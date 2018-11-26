@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cv">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center|top">
+
+            <ImageView
+                android:id="@+id/restaurantAvatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="100dp"
+                android:adjustViewBounds="true"
+                android:cropToPadding="false"
+                android:src="@drawable/restaurant_img1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="25dp"
+                android:id="@+id/titleHighlight"
+                android:text="Highlight" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="40dp"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:id="@+id/contentHighlight1"
+                android:text="Highlight1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="40dp"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:id="@+id/contentHighlight2"
+                android:text="Highlight2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="40dp"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:id="@+id/contentHighlight3"
+                android:text="Highlight3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="40dp"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:id="@+id/contentHighlight4"
+                android:text="Highlight4" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:id="@+id/restaurantDetail"
+                android:text="Restaurant detail..." />
+
+            <ImageView
+                android:id="@+id/restaurantDetailImg1s"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="100dp"
+                android:adjustViewBounds="true"
+                android:cropToPadding="false"
+                android:src="@drawable/restaurant_detail_img1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="100dp"
+                android:adjustViewBounds="true"
+                android:cropToPadding="false"
+                android:src="@drawable/restaurant_img1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="25dp"
+                android:text="Highlight" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="40dp"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:text="Highlight1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="40dp"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:text="Highlight2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="40dp"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:text="Highlight3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="40dp"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:text="Highlight4" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:text="Restaurant detail..." />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="100dp"
+                android:adjustViewBounds="true"
+                android:cropToPadding="false"
+                android:src="@drawable/restaurant_detail_img1" />
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+</ScrollView>
