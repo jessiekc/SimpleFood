@@ -7,14 +7,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.CardView;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 
-public class MainActivity extends FragmentActivity implements OnClickListener{
+public class MainActivity extends FragmentActivity implements OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +31,8 @@ public class MainActivity extends FragmentActivity implements OnClickListener{
             }
         });
         viewPagerRestaurants.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener());
+        viewPagerRestaurants.setPageMargin((int) (12 * getResources().getDisplayMetrics().density));
+
         ImageButton selectButton = findViewById(R.id.buttonCheck);
         selectButton.setOnClickListener(new OnClickListener() {
             @Override
