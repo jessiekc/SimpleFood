@@ -1,12 +1,20 @@
 package com.cityscholar.cs465.simplefood;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.CardView;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends FragmentActivity implements OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +34,27 @@ public class MainActivity extends FragmentActivity {
             }
         });
         viewPagerRestaurants.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener());
+        ImageButton selectButton = findViewById(R.id.buttonCheck);
+        selectButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri gmmIntentUri = Uri.parse("geo:0,0?q=1600 Amphitheatre Parkway, Mountain+View, California");
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
+//                Intent intent = null;
+//                intent = new Intent(Intent.ACTION_VIEW);
+//                intent.setData(Uri.parse("geo:0,0?q=1600 Amphitheatre Parkway, Mountain+View, California"));
+//                startActivity(intent);
+                return;
+            }
+        });
+    }
+
+    @Override
+    public void onClick(View v) {
+        // ToDo
+
     }
 }
 

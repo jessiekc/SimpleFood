@@ -18,7 +18,7 @@ import android.view.ViewGroup;
  * Use the {@link RestaurantsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RestaurantsFragment extends Fragment {
+public class RestaurantsFragment extends Fragment{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String TAG = RestaurantsFragment.class.getSimpleName();
