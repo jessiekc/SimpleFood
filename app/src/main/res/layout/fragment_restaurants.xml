@@ -25,17 +25,33 @@
             android:paddingBottom="16dp"
             android:gravity="center|top">
 
-            <ImageView
-                android:id="@+id/restaurantAvatar"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:layout_marginLeft="100dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="100dp"
-                android:adjustViewBounds="true"
-                android:cropToPadding="false"
-                android:src="@drawable/restaurant_img1" />
+                android:layout_gravity="center"
+                android:textColor="@android:color/black"
+                android:textSize="32sp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/titleRestaurant"
+                android:text="Restaurant Title" />
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                android:layout_marginHorizontal="20dp"
+                android:elevation="10dp">
+
+                <ImageView
+                    android:id="@+id/restaurantAvatar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:adjustViewBounds="true"
+                    android:cropToPadding="false"
+                    android:src="@drawable/restaurant_img1" />
+            </android.support.v7.widget.CardView>
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -46,14 +62,14 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="25dp"
                 android:id="@+id/titleHighlight"
-                android:text="Highlight" />
+                android:text="Highlights" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:layout_marginLeft="40dp"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/holo_orange_dark"
                 android:textSize="16sp"
                 android:id="@+id/contentHighlight1"
                 android:text="Highlight1" />
@@ -63,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:layout_marginLeft="40dp"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/holo_green_dark"
                 android:textSize="16sp"
                 android:id="@+id/contentHighlight2"
                 android:text="Highlight2" />
@@ -73,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:layout_marginLeft="40dp"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/holo_blue_dark"
                 android:textSize="16sp"
                 android:id="@+id/contentHighlight3"
                 android:text="Highlight3" />
@@ -83,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:layout_marginLeft="40dp"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/holo_purple"
                 android:textSize="16sp"
                 android:id="@+id/contentHighlight4"
                 android:text="Highlight4" />
@@ -94,98 +110,63 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:id="@+id/titleDetail"
+                android:text="More Detail" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@android:color/black"
                 android:textSize="16sp"
                 android:id="@+id/restaurantDetail"
-                android:text="Restaurant detail..." />
+                android:text="Restaurant detail content...Restaurant detail content...Restaurant detail content...Restaurant detail content...Restaurant detail content..." />
 
             <ImageView
-                android:id="@+id/restaurantDetailImg1s"
+                android:id="@+id/restaurantDetailImg1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
                 android:layout_marginLeft="100dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="100dp"
                 android:adjustViewBounds="true"
                 android:cropToPadding="false"
                 android:src="@drawable/restaurant_detail_img1" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:layout_marginLeft="100dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="100dp"
-                android:adjustViewBounds="true"
-                android:cropToPadding="false"
-                android:src="@drawable/restaurant_img1" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:textColor="@android:color/black"
-                android:textSize="20sp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="25dp"
-                android:text="Highlight" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginLeft="40dp"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:text="Highlight1" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginLeft="40dp"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:text="Highlight2" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginLeft="40dp"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:text="Highlight3" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginLeft="40dp"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:text="Highlight4" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="2dp"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
-                android:text="Restaurant detail..." />
+                android:id="@+id/restaurantDetailDescription1"
+                android:text="Image Description..." />
 
             <ImageView
+                android:id="@+id/restaurantDetailImg2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
                 android:layout_marginLeft="100dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="100dp"
                 android:adjustViewBounds="true"
                 android:cropToPadding="false"
-                android:src="@drawable/restaurant_detail_img1" />
+                android:src="@drawable/restaurant_detail_img2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:layout_marginTop="2dp"
+                android:id="@+id/restaurantDetailDescription2"
+                android:text="Image Description..." />
 
         </LinearLayout>
 
