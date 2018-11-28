@@ -57,6 +57,11 @@ public class MainActivity extends FragmentActivity {
             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(intent);
         });
+        buttonSettings = findViewById(R.id.buttonSummary);
+        buttonSettings.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SummaryViewActivity.class);
+            startActivity(intent);
+        });
     }
 }
 
