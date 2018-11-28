@@ -10,27 +10,29 @@ public class ExampleRestaurants {
             "This restaurants is similar to what you've been to");
     public static final List<Restaurant> RESTAURANTS = Arrays.asList(
             new Restaurant.Builder()
-                    .setName("Name")
-                    .setCover(R.drawable.restaurant_img1)
+                    .setName("The Purple Pig")
+                    .setCover(R.drawable.restaurant1_img)
                     .putHighlight(FilterType.PRICE, highlights.get(FilterType.PRICE))
                     .putHighlight(FilterType.DISTANCE, highlights.get(FilterType.DISTANCE))
                     .putHighlight(FilterType.CUISINE, highlights.get(FilterType.CUISINE))
                     .putHighlight(FilterType.FAMILIARITY, highlights.get(FilterType.FAMILIARITY))
-                    .appendDetail("Restaurant detail content...Restaurant detail content...Restaurant detail content...Restaurant detail content...Restaurant detail content...")
-                    .appendDetail(R.drawable.restaurant_detail_img1, "IMG1")
-                    .appendDetail(R.drawable.restaurant_detail_img2, "IMG2")
+                    .appendDetail("The Bannos' Magnificent Mile Mediterranean restaurant is a constantly-bustling small plate bonanza downtown.")
+                    .appendDetail(R.drawable.restaurant1_detail_img1, "Calamari Salad")
+                    .appendDetail(R.drawable.restaurant1_detail_img2, "Crispy Pig’s Ears")
                     .build(),
             new Restaurant.Builder()
-                    .setName("Name")
-                    .setCover(R.drawable.restaurant_img1)
+                    .setName("Frontera Grill")
+                    .setCover(R.drawable.restaurant2_img)
                     .putHighlight(FilterType.PRICE, highlights.get(FilterType.PRICE))
                     .putHighlight(FilterType.DISTANCE, highlights.get(FilterType.DISTANCE))
                     .putHighlight(FilterType.CUISINE, highlights.get(FilterType.CUISINE))
                     .putHighlight(FilterType.FAMILIARITY, highlights.get(FilterType.FAMILIARITY))
-                    .appendDetail(R.drawable.restaurant_detail_img1, "IMG1")
-                    .appendDetail("Restaurant detail content...Restaurant detail content...Restaurant detail content...Restaurant detail content...Restaurant detail content...")
-                    .appendDetail("Restaurant detail content...Restaurant detail content...Restaurant detail content...Restaurant detail content...Restaurant detail content...")
-                    .appendDetail(R.drawable.restaurant_detail_img2, "IMG2")
+                    .appendDetail("The Mexican restaurant that started it all for Rick Bayless continues to endure after nearly three decades in River North.")
+                    .appendDetail(R.drawable.restaurant2_detail_img1, "Elote")
+                    .appendDetail(R.drawable.restaurant2_detail_img2, "Frontera Ceviche")
                     .build()
+
+
             );
+
 }
