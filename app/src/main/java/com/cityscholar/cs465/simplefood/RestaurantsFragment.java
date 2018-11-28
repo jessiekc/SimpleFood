@@ -8,6 +8,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -19,9 +24,13 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class RestaurantsFragment extends Fragment {
+    private static final List<String> highlights = Arrays.asList("This restaurants has low price",
+            "This restaurants is very close",
+            "This is a Chinese restaurants",
+            "This restaurants is similar to what you've been to");
+    private static final String TAG = RestaurantsFragment.class.getSimpleName();
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String TAG = RestaurantsFragment.class.getSimpleName();
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -66,7 +75,16 @@ public class RestaurantsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_restaurants, container, false);
+        View root = inflater.inflate(R.layout.fragment_restaurants, container, false);
+
+        LinearLayout highlightsContainer = root.findViewById(R.id.highlights);
+        for (String highlightStr : highlights) {
+            TextView highlight = (TextView) inflater.inflate(R.layout.item_highlight, highlightsContainer, false);
+            highlight.setText(highlightStr);
+            highlightsContainer.addView(highlight);
+        }
+
+        return root;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
