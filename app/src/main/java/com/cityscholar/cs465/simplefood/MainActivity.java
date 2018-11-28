@@ -13,6 +13,8 @@ import android.widget.ImageButton;
 
 public class MainActivity extends FragmentActivity implements OnClickListener {
 
+    private ImageButton buttonFilters;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,12 +50,17 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
                 return;
             }
         });
+
+        buttonFilters = findViewById(R.id.buttonFilters);
+        buttonFilters.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        // ToDo
-
+        if(v.getId() == R.id.buttonFilters){
+            Intent intent = new Intent(this, filters.class);
+            startActivity(intent);
+        }
     }
 }
 
