@@ -7,7 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
 
-public class filters extends Activity {
+public class FilterActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

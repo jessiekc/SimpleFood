@@ -7,11 +7,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 
-public class MainActivity extends FragmentActivity implements OnClickListener {
+public class MainActivity extends FragmentActivity {
 
     private ImageButton buttonFilters;
 
@@ -36,31 +34,22 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
         viewPagerRestaurants.setPageMargin((int) (12 * getResources().getDisplayMetrics().density));
 
         ImageButton selectButton = findViewById(R.id.buttonCheck);
-        selectButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Uri gmmIntentUri = Uri.parse("geo:0,0?q=1600 Amphitheatre Parkway, Mountain+View, California");
-                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                mapIntent.setPackage("com.google.android.apps.maps");
-                startActivity(mapIntent);
+        selectButton.setOnClickListener(v -> {
+            Uri gmmIntentUri = Uri.parse("geo:0,0?q=1600 Amphitheatre Parkway, Mountain+View, California");
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+            mapIntent.setPackage("com.google.android.apps.maps");
+            startActivity(mapIntent);
 //                Intent intent = null;
 //                intent = new Intent(Intent.ACTION_VIEW);
 //                intent.setData(Uri.parse("geo:0,0?q=1600 Amphitheatre Parkway, Mountain+View, California"));
 //                startActivity(intent);
-                return;
-            }
         });
 
         buttonFilters = findViewById(R.id.buttonFilters);
-        buttonFilters.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        if(v.getId() == R.id.buttonFilters){
-            Intent intent = new Intent(this, filters.class);
+        buttonFilters.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, FilterActivity.class);
             startActivity(intent);
-        }
+        });
     }
 }
 
