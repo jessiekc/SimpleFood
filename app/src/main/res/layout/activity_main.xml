@@ -94,4 +94,7 @@
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintLeft_toRightOf="@+id/buttonCross"
         app:layout_constraintRight_toRightOf="parent" />
+
+
+
 </android.support.constraint.ConstraintLayout>

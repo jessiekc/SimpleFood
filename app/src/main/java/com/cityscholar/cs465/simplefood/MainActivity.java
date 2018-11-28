@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 public class MainActivity extends FragmentActivity {
 
     private ImageButton buttonFilters;
+    private ImageButton buttonSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,12 @@ public class MainActivity extends FragmentActivity {
         buttonFilters = findViewById(R.id.buttonFilters);
         buttonFilters.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, FilterActivity.class);
+            startActivity(intent);
+        });
+
+        buttonSettings = findViewById(R.id.buttonSettings);
+        buttonSettings.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(intent);
         });
     }

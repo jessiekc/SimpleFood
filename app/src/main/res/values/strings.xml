@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">Simple Food</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -9,6 +10,38 @@
         <item>Option2</item>
         <item>Option3</item>
         <item>Option4</item>
+    </string-array>
+
+
+    <string-array name="allergy_image_ids">
+        <item>@drawable/allergy_image_1</item>
+        <item>@drawable/allergy_image_2</item>
+        <item>@drawable/allergy_image_3</item>
+        <item>@drawable/allergy_image_4</item>
+        <item>@drawable/allergy_image_5</item>
+        <item>@drawable/allergy_image_6</item>
+        <item>@drawable/allergy_image_7</item>
+        <item>@drawable/allergy_image_8</item>
+        <item>@drawable/allergy_image_9</item>
+        <item>@drawable/allergy_image_10</item>
+        <item>@drawable/allergy_image_11</item>
+    </string-array>
+
+    <string-array name="allergy_image_titles">
+        <item>Almond</item>
+        <item>Peanut</item>
+        <item>Soybean</item>
+        <item>Sesame</item>
+        <item>Gluten Free</item>
+        <item>Celery</item>
+        <item>Lupin</item>
+        <item>Fish</item>
+        <item>Crustaceans</item>
+        <item>Egg</item>
+        <item>Milk</item>
+        <item>Sulfide</item>
+        <item>Mustard</item>
+        <item>Mollusc</item>
     </string-array>
 
 </resources>
