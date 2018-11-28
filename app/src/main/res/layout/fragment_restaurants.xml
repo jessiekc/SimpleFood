@@ -18,6 +18,7 @@
 
 
         <LinearLayout
+            android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center|top"
@@ -35,22 +36,22 @@
                 android:textColor="@android:color/black"
                 android:textSize="32sp" />
 
-            <android.support.v7.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:elevation="10dp"
-                app:cardCornerRadius="8dp">
+            <!--<android.support.v7.widget.CardView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginHorizontal="20dp"-->
+                <!--android:elevation="10dp"-->
+                <!--app:cardCornerRadius="8dp">-->
 
-                <ImageView
-                    android:id="@+id/restaurantAvatar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top"
-                    android:adjustViewBounds="true"
-                    android:cropToPadding="false"
-                    android:src="@drawable/restaurant_img1" />
-            </android.support.v7.widget.CardView>
+                <!--<ImageView-->
+                    <!--android:id="@+id/restaurantAvatar"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="top"-->
+                    <!--android:adjustViewBounds="true"-->
+                    <!--android:cropToPadding="false"-->
+                    <!--android:src="@drawable/restaurant_img1" />-->
+            <!--</android.support.v7.widget.CardView>-->
 
             <TextView
                 android:id="@+id/titleHighlight"
@@ -64,11 +65,11 @@
                 android:textColor="@android:color/black"
                 android:textSize="20sp" />
 
-            <LinearLayout
-                android:id="@+id/highlights"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical" />
+            <!--<LinearLayout-->
+                <!--android:id="@+id/highlights"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:orientation="vertical" />-->
 
             <TextView
                 android:id="@+id/titleDetail"
@@ -82,56 +83,56 @@
                 android:textColor="@android:color/black"
                 android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/restaurantDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginBottom="10dp"
-                android:layout_marginHorizontal="20dp"
-                android:text="Restaurant detail content...Restaurant detail content...Restaurant detail content...Restaurant detail content...Restaurant detail content..."
-                android:textColor="@android:color/black"
-                android:textSize="16sp" />
+            <!--<TextView-->
+                <!--android:id="@+id/detailText"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:layout_marginBottom="10dp"-->
+                <!--android:layout_marginHorizontal="20dp"-->
+                <!--android:text="Restaurant detail content...Restaurant detail content...Restaurant detail content...Restaurant detail content...Restaurant detail content..."-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="16sp" />-->
 
-            <ImageView
-                android:id="@+id/restaurantDetailImg1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:layout_marginBottom="5dp"
-                android:adjustViewBounds="true"
-                android:cropToPadding="false"
-                android:src="@drawable/restaurant_detail_img1" />
+            <!--<ImageView-->
+                <!--android:id="@+id/restaurantDetailImg1"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="top"-->
+                <!--android:layout_marginBottom="5dp"-->
+                <!--android:adjustViewBounds="true"-->
+                <!--android:cropToPadding="false"-->
+                <!--android:src="@drawable/restaurant_detail_img1" />-->
 
-            <TextView
-                android:id="@+id/restaurantDetailDescription1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:text="Image Description..."
-                android:textColor="@android:color/black"
-                android:textSize="16sp" />
+            <!--<TextView-->
+                <!--android:id="@+id/restaurantDetailDescription1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_marginBottom="10dp"-->
+                <!--android:text="Image Description..."-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="16sp" />-->
 
-            <ImageView
-                android:id="@+id/restaurantDetailImg2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:layout_marginBottom="5dp"
-                android:adjustViewBounds="true"
-                android:cropToPadding="false"
-                android:src="@drawable/restaurant_detail_img2" />
+            <!--<ImageView-->
+                <!--android:id="@+id/restaurantDetailImg2"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="top"-->
+                <!--android:layout_marginBottom="5dp"-->
+                <!--android:adjustViewBounds="true"-->
+                <!--android:cropToPadding="false"-->
+                <!--android:src="@drawable/restaurant_detail_img2" />-->
 
-            <TextView
-                android:id="@+id/restaurantDetailDescription2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="2dp"
-                android:text="Image Description..."
-                android:textColor="@android:color/black"
-                android:textSize="16sp" />
+            <!--<TextView-->
+                <!--android:id="@+id/restaurantDetailDescription2"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_marginTop="2dp"-->
+                <!--android:text="Image Description..."-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="16sp" />-->
 
         </LinearLayout>
 

@@ -3,13 +3,18 @@ package com.cityscholar.cs465.simplefood;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.support.constraint.Placeholder;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.cityscholar.cs465.simplefood.content.Inflatable;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,14 +34,9 @@ public class RestaurantsFragment extends Fragment {
             "This is a Chinese restaurants",
             "This restaurants is similar to what you've been to");
     private static final String TAG = RestaurantsFragment.class.getSimpleName();
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String RESTAURANT = "restaurant";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private Restaurant restaurant;
 
     private OnFragmentInteractionListener mListener;
 
@@ -48,16 +48,14 @@ public class RestaurantsFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     * @param restaurant restaurants to be displayed
      * @return A new instance of fragment RestaurantsFragment.
      */
-    // TODO: Rename and change types and number of parameters
-    public static RestaurantsFragment newInstance(String param1, String param2) {
+    public static RestaurantsFragment newInstance(Restaurant restaurant) {
         RestaurantsFragment fragment = new RestaurantsFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        Log.d(TAG, restaurant.toString());
+        args.putParcelable(RESTAURANT, restaurant);
         fragment.setArguments(args);
         return fragment;
     }
@@ -66,8 +64,9 @@ public class RestaurantsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            restaurant = getArguments().getParcelable(RESTAURANT);
+            Log.d(TAG, "Get Parcelable");
+            Log.d(TAG, restaurant.toString());
         }
     }
 
@@ -76,14 +75,18 @@ public class RestaurantsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_restaurants, container, false);
-
-        LinearLayout highlightsContainer = root.findViewById(R.id.highlights);
-        for (String highlightStr : highlights) {
-            TextView highlight = (TextView) inflater.inflate(R.layout.item_highlight, highlightsContainer, false);
-            highlight.setText(highlightStr);
-            highlightsContainer.addView(highlight);
+        LinearLayout contentContainer = root.findViewById(R.id.content);
+        contentContainer.<TextView>findViewById(R.id.titleRestaurant).setText(restaurant.getName());
+        contentContainer.addView(restaurant.getCover().inflate(inflater, contentContainer, false), 1);
+        SparseArray<String> highlights = restaurant.getHighlights();
+        for (int i = 0; i < highlights.size(); i++) {
+            TextView highlight = (TextView) inflater.inflate(R.layout.item_highlight, contentContainer, false);
+            highlight.setText(highlights.valueAt(i));
+            contentContainer.addView(highlight, contentContainer.getChildCount() - 1);
         }
-
+        for (Inflatable detail : restaurant.getDetails()) {
+            contentContainer.addView(detail.inflate(inflater, contentContainer, false), contentContainer.getChildCount());
+        }
         return root;
     }
 

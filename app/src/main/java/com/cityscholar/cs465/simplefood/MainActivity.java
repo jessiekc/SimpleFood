@@ -23,27 +23,22 @@ public class MainActivity extends FragmentActivity {
         viewPagerRestaurants.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int i) {
-                return RestaurantsFragment.newInstance("1", "2");
+                return RestaurantsFragment.newInstance(ExampleRestaurants.RESTAURANTS.get(i));
             }
 
             @Override
             public int getCount() {
-                return 3;
+                return ExampleRestaurants.RESTAURANTS.size();
             }
         });
         viewPagerRestaurants.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener());
         viewPagerRestaurants.setPageMargin((int) (12 * getResources().getDisplayMetrics().density));
 
-        ImageButton selectButton = findViewById(R.id.buttonCheck);
-        selectButton.setOnClickListener(v -> {
+        this.<ImageButton>findViewById(R.id.buttonCheck).setOnClickListener(v -> {
             Uri gmmIntentUri = Uri.parse("geo:0,0?q=1600 Amphitheatre Parkway, Mountain+View, California");
             Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
             mapIntent.setPackage("com.google.android.apps.maps");
             startActivity(mapIntent);
-//                Intent intent = null;
-//                intent = new Intent(Intent.ACTION_VIEW);
-//                intent.setData(Uri.parse("geo:0,0?q=1600 Amphitheatre Parkway, Mountain+View, California"));
-//                startActivity(intent);
         });
 
         buttonFilters = findViewById(R.id.buttonFilters);
