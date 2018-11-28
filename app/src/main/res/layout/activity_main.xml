@@ -12,7 +12,8 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:contentDescription="Shuffle"
-        android:src="@drawable/refresh_icon"
+        android:src="@drawable/ic_baseline_shuffle"
+        android:background="?android:selectableItemBackgroundBorderless"
         android:padding="0dp"
         android:layout_margin="0dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +27,8 @@
         android:layout_height="50dp"
         android:padding="0dp"
         android:layout_margin="0dp"
-        android:src="@drawable/list_icon"
+        android:background="?android:selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_baseline_format_list_bulleted"
         app:layout_constraintStart_toEndOf="@+id/buttonShuffle"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/buttonShuffle"/>
@@ -38,7 +40,8 @@
         android:layout_height="50dp"
         android:padding="0dp"
         android:layout_margin="0dp"
-        android:src="@drawable/setting_icon"
+        android:background="?android:selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_baseline_settings"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,8 +51,9 @@
         android:layout_height="50dp"
         android:padding="0dp"
         android:layout_margin="0dp"
+        android:background="?android:selectableItemBackgroundBorderless"
         android:clickable="true"
-        android:src="@drawable/filter_icon"
+        android:src="@drawable/ic_baseline_filter_list"
         app:layout_constraintEnd_toStartOf="@+id/buttonSettings"
         app:layout_constraintTop_toTopOf="parent" />
 
