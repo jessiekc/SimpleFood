@@ -81,19 +81,7 @@ public class SettingsActivity extends Activity {
     }
 
 
-
-//    public void increaseInteger(View view) {
-//        minteger = minteger + 1;
-//        display(minteger);
-//
-//    }public void decreaseInteger(View view) {
-//        minteger = minteger - 1;
-//        display(minteger);
-//    }
-
     private void display(int number) {
-//        TextView displayInteger = (TextView) findViewById(
-//                R.id.integer_number);
         limitNum.setText("" + number);
     }
 }
