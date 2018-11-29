@@ -5,11 +5,31 @@
     <!-- TODO: Remove or change this placeholder text -->
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string-array name="filter_options">
-        <item>Option1</item>
-        <item>Option2</item>
-        <item>Option3</item>
-        <item>Option4</item>
+    <string-array name="filter1_options">
+        <item>cheap</item>
+        <item>kinda cheap</item>
+        <item>expensive</item>
+        <item>very expensive</item>
+    </string-array>
+
+    <string-array name="filter2_options">
+        <item>close</item>
+        <item>kinda close</item>
+        <item>far</item>
+        <item>very far</item>
+    </string-array>
+
+    <string-array name="filter3_options">
+        <item>chinese</item>
+        <item>mexican</item>
+        <item>thai</item>
+        <item>mediterranean</item>
+    </string-array>
+
+    <string-array name="filter4_options">
+        <item>familiar</item>
+        <item>kinda familiar</item>
+        <item>new</item>
     </string-array>
 
 

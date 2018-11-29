@@ -24,19 +24,25 @@ public class FilterActivity extends Activity implements AdapterView.OnItemSelect
 
         Spinner spinner = findViewById(R.id.filter1);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.filter_options, android.R.layout.simple_spinner_item);
+                R.array.filter1_options, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
+        adapter = ArrayAdapter.createFromResource(this,
+                R.array.filter2_options, android.R.layout.simple_spinner_item);
         spinner = findViewById(R.id.filter2);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
+        adapter = ArrayAdapter.createFromResource(this,
+                R.array.filter3_options, android.R.layout.simple_spinner_item);
         spinner = findViewById(R.id.filter3);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
+        adapter = ArrayAdapter.createFromResource(this,
+                R.array.filter4_options, android.R.layout.simple_spinner_item);
         spinner = findViewById(R.id.filter4);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
@@ -84,13 +90,14 @@ public class FilterActivity extends Activity implements AdapterView.OnItemSelect
 
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
-        if(parent.getId() == 2131230800) {
+
+        if(parent.getId() == 2131230805) {
             Save("filter1", parent.getItemAtPosition(pos).toString());
-        } else if (parent.getId() == 2131230801){
-            Save("filter2", parent.getItemAtPosition(pos).toString());
-        } else if (parent.getId() == 2131230802){
+        } else if (parent.getId() == 2131230806){
+           Save("filter2", parent.getItemAtPosition(pos).toString());
+        } else if (parent.getId() == 2131230807){
             Save("filter3", parent.getItemAtPosition(pos).toString());
-        } else if (parent.getId() == 2131230803){
+        } else if (parent.getId() == 2131230808){
             Save("filter4", parent.getItemAtPosition(pos).toString());
         }
         Save("order", getOrder());
