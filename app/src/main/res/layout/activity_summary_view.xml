@@ -17,10 +17,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/buttonSummary"/>
+        app:layout_constraintRight_toLeftOf="@+id/buttonDetail"/>
 
     <ImageButton
-        android:id="@+id/buttonSummary"
+        android:id="@+id/buttonDetail"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:padding="0dp"
