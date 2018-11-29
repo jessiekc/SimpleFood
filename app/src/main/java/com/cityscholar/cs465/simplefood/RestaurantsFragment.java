@@ -1,11 +1,9 @@
 package com.cityscholar.cs465.simplefood;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.support.constraint.Placeholder;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.util.SparseArray;
@@ -18,6 +16,7 @@ import com.cityscholar.cs465.simplefood.content.Inflatable;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.PrimitiveIterator;
 
 
 /**
@@ -39,6 +38,7 @@ public class RestaurantsFragment extends Fragment {
     private Restaurant restaurant;
 
     private OnFragmentInteractionListener mListener;
+    private SharedPreferences preferences;
 
     public RestaurantsFragment() {
         // Required empty public constructor
@@ -78,16 +78,40 @@ public class RestaurantsFragment extends Fragment {
         LinearLayout contentContainer = root.findViewById(R.id.content);
         contentContainer.<TextView>findViewById(R.id.titleRestaurant).setText(restaurant.getName());
         contentContainer.addView(restaurant.getCover().inflate(inflater, contentContainer, false), 1);
+
+        preferences = getContext().getSharedPreferences(FilterActivity.PREFS, Context.MODE_PRIVATE);
+        final String orderStr = preferences.getString("order", "filter1, filter2, filter3, filter4");
         SparseArray<String> highlights = restaurant.getHighlights();
-        for (int i = 0; i < highlights.size(); i++) {
-            TextView highlight = (TextView) inflater.inflate(R.layout.item_highlight, contentContainer, false);
-            highlight.setText(highlights.valueAt(i));
-            contentContainer.addView(highlight, contentContainer.getChildCount() - 1);
-        }
+        Arrays.stream(orderStr.split(",", 5))
+                .map(String::trim)
+                .peek(s -> Log.d(TAG, s))
+                .mapToInt(s -> Character.getNumericValue(s.charAt("filter".length())))
+                .forEach(i -> {
+                    TextView highlight = (TextView) inflater.inflate(R.layout.item_highlight, contentContainer, false);
+                    highlight.setText(highlights.valueAt(i));
+                    contentContainer.addView(highlight, contentContainer.getChildCount() - 1);
+                });
         for (Inflatable detail : restaurant.getDetails()) {
             contentContainer.addView(detail.inflate(inflater, contentContainer, false), contentContainer.getChildCount());
         }
         return root;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        final String orderStr = preferences.getString("order", "filter1, filter2, filter3, filter4");
+        SparseArray<String> highlights = restaurant.getHighlights();
+        LinearLayout contentContainer = getView().findViewById(R.id.content);
+        final PrimitiveIterator.OfInt iterator = Arrays.stream(orderStr.split(",", 5))
+                .map(String::trim)
+                .peek(s -> Log.d(TAG, s))
+                .mapToInt(s -> Character.getNumericValue(s.charAt("filter".length())))
+                .iterator();
+        for (int i = 3; i < 3 + 4 && iterator.hasNext(); i++) {
+            TextView v = (TextView) contentContainer.getChildAt(i);
+            v.setText(highlights.valueAt(iterator.nextInt()));
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event

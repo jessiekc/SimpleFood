@@ -94,6 +94,7 @@ public class Restaurant implements Parcelable {
 
         public Builder() {
             highlights = new SparseArray<>();
+            highlights.append(0, "");
             details = new ArrayList<>();
         }
 

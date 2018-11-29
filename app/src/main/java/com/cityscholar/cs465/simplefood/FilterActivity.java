@@ -13,9 +13,10 @@ import android.widget.Spinner;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
 
 public class FilterActivity extends Activity implements AdapterView.OnItemSelectedListener {
+    private static final String TAG = FilterActivity.class.getSimpleName();
 
     SharedPreferences sharedpreferences;
-    public static final String prefs = "prefs";
+    public static final String PREFS = "PREFS";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,24 +52,21 @@ public class FilterActivity extends Activity implements AdapterView.OnItemSelect
         for (int i = 0; i < dragLinearLayout.getChildCount(); i++) {
             View child = dragLinearLayout.getChildAt(i);
             dragLinearLayout.setViewDraggable(child, child);
-            dragLinearLayout.setOnViewSwapListener(new DragLinearLayout.OnViewSwapListener() {
-                @Override
-                public void onSwap(View firstView, int firstPosition, View secondView, int secondPosition) {
-                    String currentOrder = getOrder();
-                    String[] orderArray = currentOrder.split(",", 5);
-                    String temp = orderArray[firstPosition];
-                    orderArray[firstPosition] = orderArray[secondPosition];
-                    orderArray[secondPosition] = temp;
-                    String nextOrder = orderArray[0] + ", " + orderArray[1] + ", " + orderArray[2] + ", " + orderArray[3];
-                    Save("order", nextOrder);
+            dragLinearLayout.setOnViewSwapListener((firstView, firstPosition, secondView, secondPosition) -> {
+                String currentOrder = getOrder();
+                String[] orderArray = currentOrder.split(",", 5);
+                String temp = orderArray[firstPosition];
+                orderArray[firstPosition] = orderArray[secondPosition];
+                orderArray[secondPosition] = temp;
+                String nextOrder = orderArray[0] + ", " + orderArray[1] + ", " + orderArray[2] + ", " + orderArray[3];
+                Save("order", nextOrder);
 
-                    Log.i("THIS IS A DEBUG", sharedpreferences.getAll().toString());
-                }
+                Log.d(TAG, sharedpreferences.getAll().toString());
             });
             child.setId(i+1);
         }
 
-        sharedpreferences = getSharedPreferences(prefs,
+        sharedpreferences = getSharedPreferences(PREFS,
                 Context.MODE_PRIVATE);
         sharedpreferences.edit().clear().apply();
 
@@ -101,9 +99,9 @@ public class FilterActivity extends Activity implements AdapterView.OnItemSelect
             Save("filter4", parent.getItemAtPosition(pos).toString());
         }
         Save("order", getOrder());
-        sharedpreferences = getSharedPreferences(prefs,
+        sharedpreferences = getSharedPreferences(PREFS,
                 Context.MODE_PRIVATE);
-        Log.i("THIS IS A DEBUG", sharedpreferences.getAll().toString());
+        Log.d(TAG, sharedpreferences.getAll().toString());
 
     }
 
@@ -115,10 +113,10 @@ public class FilterActivity extends Activity implements AdapterView.OnItemSelect
         String pos1, pos2, pos3, pos4;
 
         DragLinearLayout dragLinearLayout = findViewById(R.id.filtersContainer);
-        pos1 = "filter" + Integer.toString(dragLinearLayout.getChildAt(0).getId());
-        pos2 = "filter" + Integer.toString(dragLinearLayout.getChildAt(1).getId());
-        pos3 = "filter" + Integer.toString(dragLinearLayout.getChildAt(2).getId());
-        pos4 = "filter" + Integer.toString(dragLinearLayout.getChildAt(3).getId());
+        pos1 = "filter" + dragLinearLayout.getChildAt(0).getId();
+        pos2 = "filter" + dragLinearLayout.getChildAt(1).getId();
+        pos3 = "filter" + dragLinearLayout.getChildAt(2).getId();
+        pos4 = "filter" + dragLinearLayout.getChildAt(3).getId();
         return pos1 + ", " + pos2 + ", " + pos3 + ", " + pos4;
     }
 
