@@ -65,7 +65,7 @@ public class FilterActivity extends Activity implements AdapterView.OnItemSelect
                     Log.i("THIS IS A DEBUG", sharedpreferences.getAll().toString());
                 }
             });
-            child.setId(child.generateViewId());
+            child.setId(i+1);
         }
 
         sharedpreferences = getSharedPreferences(prefs,
