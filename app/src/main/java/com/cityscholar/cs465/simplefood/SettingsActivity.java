@@ -2,14 +2,14 @@ package com.cityscholar.cs465.simplefood;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.*;
+import android.widget.Button;
+import android.widget.GridView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -35,34 +35,23 @@ public class SettingsActivity extends Activity {
         allergyGridView.setAdapter(gridAdapter);
 
         limitNum = findViewById(R.id.integer_number);
-        plus=findViewById(R.id.increase);
+        plus = findViewById(R.id.increase);
         minus = findViewById(R.id.decrease);
-        sharedpreferences=getSharedPreferences("com.example.myapp.PREFERENCE_FILE_KEY", Context.MODE_PRIVATE);
+
+        sharedpreferences = getSharedPreferences("com.example.myapp.PREFERENCE_FILE_KEY", Context.MODE_PRIVATE);
         minteger = sharedpreferences.getInt("limitNum", 10);
         display(minteger);
-        plus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                minteger = minteger + 1;
-                display(minteger);
 
-                SharedPreferences.Editor editor = sharedpreferences.edit();
-
-                editor.putInt("limitNum", minteger);
-                editor.commit();
-            }
+        plus.setOnClickListener(v -> {
+            minteger = minteger + 1;
+            display(minteger);
+            sharedpreferences.edit().putInt("limitNum", minteger).apply();
         });
-        minus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                minteger = minteger - 1;
-                display(minteger);
 
-                SharedPreferences.Editor editor = sharedpreferences.edit();
-
-                editor.putInt("limitNum", minteger);
-                editor.commit();
-            }
+        minus.setOnClickListener(v -> {
+            minteger = minteger - 1;
+            display(minteger);
+            sharedpreferences.edit().putInt("limitNum", minteger).apply();
         });
 
     }
