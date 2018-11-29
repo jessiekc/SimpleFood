@@ -52,6 +52,10 @@ public class MainActivity extends FragmentActivity {
             Intent intent = new Intent(MainActivity.this, SummaryViewActivity.class);
             startActivity(intent);
         });
+
+        this.<ImageButton>findViewById(R.id.buttonShuffle).setOnClickListener(v -> {
+            adapter.shuffle();
+        });
     }
 
     @Override
