@@ -2,6 +2,7 @@ package com.cityscholar.cs465.simplefood;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,9 @@ import java.util.List;
 
 public class SummaryViewActivity extends Activity {
     private ImageButton buttonDetail;
+    private ImageButton buttonCheck;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,17 +33,34 @@ public class SummaryViewActivity extends Activity {
             Intent intent = new Intent(SummaryViewActivity.this, MainActivity.class);
             startActivity(intent);
         });
+
+//        buttonCheck = findViewById(R.id.buttonCheck);
+//        buttonCheck.setOnClickListener(v -> {
+//            Uri gmmIntentUri = Uri.parse("geo:0,0?q=1600 Amphitheatre Parkway, Mountain+View, California");
+//            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+//            mapIntent.setPackage("com.google.android.apps.maps");
+//            startActivity(mapIntent);
+//        });
     }
     public List<SummaryListData> fill_with_data() {
 
         List<SummaryListData> data = new ArrayList<>();
 
-        data.add(new SummaryListData("Batman vs Superman", "Following the destruction of Metropolis, Batman embarks on a personal vendetta against Superman ", R.drawable.restaurant_detail_img1));
-        data.add(new SummaryListData("X-Men: Apocalypse", "X-Men: Apocalypse is an upcoming American superhero film based on the X-Men characters that appear in Marvel Comics ", R.drawable.restaurant_detail_img1));
-        data.add(new SummaryListData("Captain America: Civil War", "A feud between Captain America and Iron Man leaves the Avengers in turmoil.  ", R.drawable.restaurant_detail_img1));
-        data.add(new SummaryListData("Kung Fu Panda 3", "After reuniting with his long-lost father, Po  must train a village of pandas", R.drawable.restaurant_detail_img1));
-        data.add(new SummaryListData("Warcraft", "Fleeing their dying home to colonize another, fearsome orc warriors invade the peaceful realm of Azeroth. ", R.drawable.restaurant_detail_img1));
-        data.add(new SummaryListData("Alice in Wonderland", "Alice in Wonderland: Through the Looking Glass ", R.drawable.restaurant_detail_img1));
+        data.add(new SummaryListData("The Purple Pig", "The Bannos' Magnificent Mile Mediterranean restaurant is a constantly-bustling small plate bonanza downtown.", R.drawable.restaurant1_detail_img1));
+        data.add(new SummaryListData("Frontera Grill", "The Mexican restaurant that started it all for Rick Bayless continues to endure after nearly three decades in River North.", R.drawable.restaurant2_detail_img1));
+        data.add(new SummaryListData("Gilt Bar", "Brendan Sodikoff's first River North restaurant set the sultry standard for his string of smash hits.", R.drawable.restaurant3_detail_img1));
+        data.add(new SummaryListData("Sabri Nihari", "An Indian-Pakistani stalwart on Devon Avenue.", R.drawable.restaurant4_detail_img1));
+        data.add(new SummaryListData("Mango Pickle", "Edgewater's creative Indian destination gets Michelin status.", R.drawable.restaurant5_detail_img1));
+        data.add(new SummaryListData("The Angry Crab", "The Angry Crab, with locations in Wicker Park and West Rogers Park, started the explosion of bagged Cajun seafood in Chicago.", R.drawable.restaurant6_detail_img1));
+        data.add(new SummaryListData("Jin Thai Cuisine", "This North Side Thai restaurant gets another accolade from the Michelin Man.", R.drawable.restaurant7_detail_img1));
+        data.add(new SummaryListData("Herb", "The fancy Thai restaurant up north is a Bib Gourmand for the third year.", R.drawable.restaurant8_detail_img1));
+        data.add(new SummaryListData("Passerotto", "Chef Jennifer Kim (Snaggletooth) has wowed fans in Andersonville. A suburban Chicago native, she celebrates her Korean heritage using Western kitchen techniques and good wine.", R.drawable.restaurant9_detail_img1));
+        data.add(new SummaryListData("San Soo Gab San", "San Soo Gab San is a carnivores dream with Korean tabletop grills in a no-frills atmosphere. The restaurant is also well past midnight, and runs a suburban location in Morton Grove. There’s also a location in River West.", R.drawable.restaurant10_detail_img1));
+        data.add(new SummaryListData("Hopleaf Bar", "The gold standard for craft beer bars in Chicago, Hopleaf's menu that includes oysters and Montreal-style brisket has something for everyone.", R.drawable.restaurant11_detail_img1));
+        data.add(new SummaryListData("Smoque BBQ", "Perhaps the city's best barbecue, eaters venture from far and wide for the acclaimed ribs, pulled pork, brisket, and much more.", R.drawable.restaurant12_detail_img1));
+        data.add(new SummaryListData("Wood", "This Boystown restaurant has fine-dining pedigree and outstanding cocktails.", R.drawable.restaurant13_detail_img1));
+        data.add(new SummaryListData("Ceres' Table", "The East Lakeview Italian restaurant hasn't lost a step since relocating from further north.", R.drawable.restaurant14_detail_img1));
+        data.add(new SummaryListData("Chilam Balam", "The creative Mexican restaurant in East Lakeview gets more accolades from the Michelin Guide.", R.drawable.restaurant15_detail_img1));
 
         return data;
     }
