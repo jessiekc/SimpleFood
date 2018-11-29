@@ -13,6 +13,7 @@ public class MainActivity extends FragmentActivity {
 
     private ImageButton buttonFilters;
     private ImageButton buttonSettings;
+    private ImageButton buttonSummary;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +53,8 @@ public class MainActivity extends FragmentActivity {
             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(intent);
         });
-        buttonSettings = findViewById(R.id.buttonSummary);
-        buttonSettings.setOnClickListener(v -> {
+        buttonSummary = findViewById(R.id.buttonSummary);
+        buttonSummary.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, SummaryViewActivity.class);
             startActivity(intent);
         });

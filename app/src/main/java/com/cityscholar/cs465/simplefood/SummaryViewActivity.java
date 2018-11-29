@@ -1,15 +1,17 @@
 package com.cityscholar.cs465.simplefood;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.ImageButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SummaryViewActivity extends Activity {
-
+    private ImageButton buttonDetail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +23,12 @@ public class SummaryViewActivity extends Activity {
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(data, getApplication());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        buttonDetail = findViewById(R.id.buttonDetail);
+        buttonDetail.setOnClickListener(v -> {
+            Intent intent = new Intent(SummaryViewActivity.this, MainActivity.class);
+            startActivity(intent);
+        });
     }
     public List<SummaryListData> fill_with_data() {
 
@@ -35,4 +43,5 @@ public class SummaryViewActivity extends Activity {
 
         return data;
     }
+
 }
