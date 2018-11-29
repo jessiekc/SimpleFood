@@ -91,13 +91,13 @@ public class FilterActivity extends Activity implements AdapterView.OnItemSelect
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
 
-        if(parent.getId() == 2131230805) {
+        if(parent.getId() == R.id.filter1) {
             Save("filter1", parent.getItemAtPosition(pos).toString());
-        } else if (parent.getId() == 2131230806){
+        } else if (parent.getId() == R.id.filter2){
            Save("filter2", parent.getItemAtPosition(pos).toString());
-        } else if (parent.getId() == 2131230807){
+        } else if (parent.getId() == R.id.filter3){
             Save("filter3", parent.getItemAtPosition(pos).toString());
-        } else if (parent.getId() == 2131230808){
+        } else if (parent.getId() == R.id.filter4){
             Save("filter4", parent.getItemAtPosition(pos).toString());
         }
         Save("order", getOrder());
