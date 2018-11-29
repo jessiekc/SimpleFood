@@ -15,7 +15,9 @@ import java.util.List;
 
 public class SummaryViewActivity extends Activity {
     private ImageButton buttonDetail;
-    private ImageButton buttonCheck;
+    private ImageButton buttonSettings;
+    private ImageButton buttonFilters;
+
 
     SharedPreferences sharedpreferences;
 
@@ -41,14 +43,17 @@ public class SummaryViewActivity extends Activity {
             Intent intent = new Intent(SummaryViewActivity.this, MainActivity.class);
             startActivity(intent);
         });
+        buttonSettings = findViewById(R.id.buttonSettings);
+        buttonSettings.setOnClickListener(v -> {
+            Intent intent = new Intent(SummaryViewActivity.this, SettingsActivity.class);
+            startActivity(intent);
+        });
+        buttonFilters = findViewById(R.id.buttonFilters);
+        buttonFilters.setOnClickListener(v -> {
+            Intent intent = new Intent(SummaryViewActivity.this, FilterActivity.class);
+            startActivity(intent);
+        });
 
-//        buttonCheck = findViewById(R.id.buttonCheck);
-//        buttonCheck.setOnClickListener(v -> {
-//            Uri gmmIntentUri = Uri.parse("geo:0,0?q=1600 Amphitheatre Parkway, Mountain+View, California");
-//            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-//            mapIntent.setPackage("com.google.android.apps.maps");
-//            startActivity(mapIntent);
-//        });
     }
     public List<SummaryListData> fill_with_data() {
 
