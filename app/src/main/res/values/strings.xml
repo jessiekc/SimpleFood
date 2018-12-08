@@ -2,9 +2,6 @@
 
     <string name="app_name">Simple Food</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string-array name="filter1_options">
         <item>cheap</item>
         <item>kinda cheap</item>

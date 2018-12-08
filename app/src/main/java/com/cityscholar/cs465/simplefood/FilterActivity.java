@@ -7,11 +7,12 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.RelativeLayout;
-import android.widget.Spinner;
+import android.view.ViewGroup;
+import android.widget.*;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FilterActivity extends Activity implements AdapterView.OnItemSelectedListener {
     private static final String TAG = FilterActivity.class.getSimpleName();
@@ -24,60 +25,89 @@ public class FilterActivity extends Activity implements AdapterView.OnItemSelect
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filters);
 
+        RelativeLayout filt1 = findViewById(R.id.filter1container);
+        RelativeLayout filt2 = findViewById(R.id.filter2container);
+        RelativeLayout filt3 = findViewById(R.id.filter3container);
+        RelativeLayout filt4 = findViewById(R.id.filter4container);
+
+        sharedpreferences = getSharedPreferences(PREFS,
+                Context.MODE_PRIVATE);
+        String filtsOrder = sharedpreferences.getString("order", "filter1, filter2, filter3, filter4");
+        String[] filtsOrderArray = filtsOrder.split(",", 5);
+        DragLinearLayout dragLinearLayout = findViewById(R.id.filtersContainer);
+
+        int childCount = dragLinearLayout.getChildCount();
+        for(int i = 0; i < childCount; i++){
+            dragLinearLayout.removeViewAt(0);
+        }
+
+        for(int i = 0; i < childCount; i++){
+            if(filtsOrderArray[i].equals("filter1")){
+                dragLinearLayout.addView(filt1, i);
+            }
+            else if(filtsOrderArray[i].equals("filter2")){
+                dragLinearLayout.addView(filt2, i);
+            }
+            else if(filtsOrderArray[i].equals("filter3")){
+                dragLinearLayout.addView(filt3, i);
+            }
+            else if(filtsOrderArray[i].equals("filter4")){
+                dragLinearLayout.addView(filt4, i);
+            }
+        }
+
         Spinner spinner = findViewById(R.id.filter1);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.filter1_options, android.R.layout.simple_spinner_item);
+        List<String> spinnerArray = buildSpinOptions(sharedpreferences.getString("filter1", "cheap"), "cheap", "kinda cheap", "expensive", "very expensive");
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
-        adapter = ArrayAdapter.createFromResource(this,
-                R.array.filter2_options, android.R.layout.simple_spinner_item);
         spinner = findViewById(R.id.filter2);
+        spinnerArray = buildSpinOptions(sharedpreferences.getString("filter2", "close"), "close", "kinda close", "far", "very far");
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerArray);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
-        adapter = ArrayAdapter.createFromResource(this,
-                R.array.filter3_options, android.R.layout.simple_spinner_item);
         spinner = findViewById(R.id.filter3);
+        spinnerArray = buildSpinOptions(sharedpreferences.getString("filter3", "chinese"), "chinese", "mexican", "thai", "mediterranean");
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerArray);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
-        adapter = ArrayAdapter.createFromResource(this,
-                R.array.filter4_options, android.R.layout.simple_spinner_item);
         spinner = findViewById(R.id.filter4);
+        spinnerArray = buildSpinOptions(sharedpreferences.getString("filter4", "familiar"), "familiar", "kinda familiar", "new");
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerArray);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
-        DragLinearLayout dragLinearLayout = findViewById(R.id.filtersContainer);
         for (int i = 0; i < dragLinearLayout.getChildCount(); i++) {
-            View child = dragLinearLayout.getChildAt(i);
-            dragLinearLayout.setViewDraggable(child, child);
+            ViewGroup child = (ViewGroup) dragLinearLayout.getChildAt(i);
+            dragLinearLayout.setViewDraggable(child, child.getChildAt(0));
             dragLinearLayout.setOnViewSwapListener((firstView, firstPosition, secondView, secondPosition) -> {
                 String currentOrder = getOrder();
                 String[] orderArray = currentOrder.split(",", 5);
                 String temp = orderArray[firstPosition];
                 orderArray[firstPosition] = orderArray[secondPosition];
                 orderArray[secondPosition] = temp;
-                String nextOrder = orderArray[0] + ", " + orderArray[1] + ", " + orderArray[2] + ", " + orderArray[3];
+                String nextOrder = orderArray[0] + "," + orderArray[1] + "," + orderArray[2] + "," + orderArray[3];
                 Save("order", nextOrder);
 
                 Log.d(TAG, sharedpreferences.getAll().toString());
             });
-            child.setId(i+1);
+            if(child == filt1){
+                child.setId(1);
+            }else if(child == filt2){
+                child.setId(2);
+            }else if(child == filt3){
+                child.setId(3);
+            }else if(child == filt4){
+                child.setId(4);
+            }
         }
-
-        sharedpreferences = getSharedPreferences(PREFS,
-                Context.MODE_PRIVATE);
-        sharedpreferences.edit().clear().apply();
-
-        sharedpreferences.edit().putString("order", getOrder()).apply();
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-
 
     }
 
@@ -118,8 +148,23 @@ public class FilterActivity extends Activity implements AdapterView.OnItemSelect
         pos2 = "filter" + dragLinearLayout.getChildAt(1).getId();
         pos3 = "filter" + dragLinearLayout.getChildAt(2).getId();
         pos4 = "filter" + dragLinearLayout.getChildAt(3).getId();
-        return pos1 + ", " + pos2 + ", " + pos3 + ", " + pos4;
+        return pos1 + "," + pos2 + "," + pos3 + "," + pos4;
     }
 
+    private List<String> buildSpinOptions(String firstOption, String ... options){
+        List<String> optionsList = new ArrayList<>();
+        for (String option:options){
+            if(option.equals(firstOption)){
+                optionsList.add(firstOption);
+            }
+        }
+        for(String option:options){
+            if(!option.equals(firstOption)){
+                optionsList.add(option);
+            }
+        }
+
+        return optionsList;
+    }
 }
 

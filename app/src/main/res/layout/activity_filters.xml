@@ -15,7 +15,8 @@
             android:id="@+id/filter1container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:background="@drawable/border"
+            android:layout_weight="3">
             <ImageButton
                 android:id="@+id/MoveThing1"
                 android:layout_width="wrap_content"
@@ -23,7 +24,10 @@
                 android:src="@drawable/ic_menu_black_24dp"
                 android:layout_marginStart="10dp"
                 android:layout_centerVertical="true"
-                android:contentDescription="@android:string/autofill"/>
+                android:background="@android:color/white"
+                android:padding="5dp"
+                />
+
             <Spinner
                 android:id="@+id/filter1"
                 android:layout_width="match_parent"
@@ -35,17 +39,22 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/filter2container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:background="@drawable/border"
+            android:layout_weight="2">
             <ImageButton
                 android:id="@+id/MoveThing2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_menu_black_24dp"
                 android:layout_marginStart="10dp"
+                android:padding="5dp"
                 android:layout_centerVertical="true"
-                android:contentDescription="@android:string/autofill"/>
+                android:contentDescription="@android:string/autofill"
+                android:background="@android:color/white"/>
+
             <Spinner
                 android:id="@+id/filter2"
                 android:layout_width="match_parent"
@@ -57,8 +66,10 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/filter3container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/border"
             android:layout_weight="1">
             <ImageButton
                 android:id="@+id/MoveThing3"
@@ -67,7 +78,8 @@
                 android:src="@drawable/ic_menu_black_24dp"
                 android:layout_marginStart="10dp"
                 android:layout_centerVertical="true"
-                android:contentDescription="@android:string/autofill"/>
+                android:contentDescription="@android:string/autofill"
+                android:background="@android:color/white"/>
             <Spinner
                 android:id="@+id/filter3"
                 android:layout_width="match_parent"
@@ -79,8 +91,10 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/filter4container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/border"
             android:layout_weight="1">
             <ImageButton
                 android:id="@+id/MoveThing4"
@@ -89,7 +103,8 @@
                 android:src="@drawable/ic_menu_black_24dp"
                 android:layout_marginStart="10dp"
                 android:layout_centerVertical="true"
-                android:contentDescription="@android:string/autofill"/>
+                android:contentDescription="@android:string/autofill"
+                android:background="@android:color/white"/>
             <Spinner
                 android:id="@+id/filter4"
                 android:layout_width="match_parent"
