@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/border"
-            android:layout_weight="3">
+            android:layout_weight="4">
             <ImageButton
                 android:id="@+id/MoveThing1"
                 android:layout_width="wrap_content"
@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/border"
-            android:layout_weight="2">
+            android:layout_weight="3">
             <ImageButton
                 android:id="@+id/MoveThing2"
                 android:layout_width="wrap_content"
@@ -70,7 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/border"
-            android:layout_weight="1">
+            android:layout_weight="2">
             <ImageButton
                 android:id="@+id/MoveThing3"
                 android:layout_width="wrap_content"

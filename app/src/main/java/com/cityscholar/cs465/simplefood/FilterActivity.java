@@ -57,14 +57,14 @@ public class FilterActivity extends Activity implements AdapterView.OnItemSelect
         }
 
         Spinner spinner = findViewById(R.id.filter1);
-        List<String> spinnerArray = buildSpinOptions(sharedpreferences.getString("filter1", "cheap"), "cheap", "kinda cheap", "expensive", "very expensive");
+        List<String> spinnerArray = buildSpinOptions(sharedpreferences.getString("filter1", "Less than $5"), "Less than $10", "$10-$20", "$20-$30", "More than $30");
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
         spinner = findViewById(R.id.filter2);
-        spinnerArray = buildSpinOptions(sharedpreferences.getString("filter2", "close"), "close", "kinda close", "far", "very far");
+        spinnerArray = buildSpinOptions(sharedpreferences.getString("filter2", "Less than 1 mile"), "Less than 1 mile", "1-5 miles", "5-10 miles", "More than 10 miles");
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
@@ -95,6 +95,9 @@ public class FilterActivity extends Activity implements AdapterView.OnItemSelect
                 orderArray[secondPosition] = temp;
                 String nextOrder = orderArray[0] + "," + orderArray[1] + "," + orderArray[2] + "," + orderArray[3];
                 Save("order", nextOrder);
+
+                changeWeight(firstView, 4-secondPosition);
+                changeWeight(secondView, 4-firstPosition);
 
                 Log.d(TAG, sharedpreferences.getAll().toString());
             });
@@ -165,6 +168,11 @@ public class FilterActivity extends Activity implements AdapterView.OnItemSelect
         }
 
         return optionsList;
+    }
+
+    private void changeWeight(View view, float weight){
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, weight);
+        view.setLayoutParams(params);
     }
 }
 
