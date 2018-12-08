@@ -57,7 +57,7 @@ public class FilterActivity extends Activity implements AdapterView.OnItemSelect
         }
 
         Spinner spinner = findViewById(R.id.filter1);
-        List<String> spinnerArray = buildSpinOptions(sharedpreferences.getString("filter1", "Less than $5"), "Less than $10", "$10-$20", "$20-$30", "More than $30");
+        List<String> spinnerArray = buildSpinOptions(sharedpreferences.getString("filter1", "Less than $10"), "Less than $10", "$10-$20", "$20-$30", "More than $30");
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
