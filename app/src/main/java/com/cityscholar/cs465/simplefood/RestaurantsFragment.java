@@ -1,6 +1,7 @@
 package com.cityscholar.cs465.simplefood;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,8 +11,7 @@ import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.*;
 import com.cityscholar.cs465.simplefood.content.Inflatable;
 
 import java.util.Arrays;
@@ -39,6 +39,7 @@ public class RestaurantsFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     private SharedPreferences preferences;
+    private boolean seen = false;
 
     public RestaurantsFragment() {
         // Required empty public constructor
@@ -62,6 +63,7 @@ public class RestaurantsFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        setUserVisibleHint(false);
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             restaurant = getArguments().getParcelable(RESTAURANT);
@@ -81,19 +83,34 @@ public class RestaurantsFragment extends Fragment {
 
         preferences = getContext().getSharedPreferences(FilterActivity.PREFS, Context.MODE_PRIVATE);
         final String orderStr = preferences.getString("order", "filter1, filter2, filter3, filter4");
-        SparseArray<String> highlights = restaurant.getHighlights();
+        SparseArray<Highlight> highlights = restaurant.getHighlights();
         Arrays.stream(orderStr.split(",", 5))
                 .map(String::trim)
                 .peek(s -> Log.d(TAG, s))
                 .mapToInt(s -> Character.getNumericValue(s.charAt("filter".length())))
                 .forEach(i -> {
                     TextView highlight = (TextView) inflater.inflate(R.layout.item_highlight, contentContainer, false);
-                    highlight.setText(highlights.valueAt(i));
+                    Log.d(TAG, String.valueOf(i));
+                    highlight.setText(highlights.get(i).content);
                     contentContainer.addView(highlight, contentContainer.getChildCount() - 1);
                 });
         for (Inflatable detail : restaurant.getDetails()) {
             contentContainer.addView(detail.inflate(inflater, contentContainer, false), contentContainer.getChildCount());
         }
+
+        root.<Button>findViewById(R.id.buttonCheck).setOnClickListener(v -> {
+            Uri gmmIntentUri = Uri.parse("geo:0,0?q=1600 Amphitheatre Parkway, Mountain+View, California");
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+            mapIntent.setPackage("com.google.android.apps.maps");
+            startActivity(mapIntent);
+        });
+        root.<Button>findViewById(R.id.buttonCross).setOnClickListener(v -> onButtonPressed());
+
+        root.<ImageView>findViewById(R.id.moreContent).setVisibility(View.VISIBLE);
+        root.<ScrollView>findViewById(R.id.scrollView).setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+            root.<ImageView>findViewById(R.id.moreContent).setVisibility(View.GONE);
+            v.setOnScrollChangeListener(null);
+        });
         return root;
     }
 
@@ -101,7 +118,7 @@ public class RestaurantsFragment extends Fragment {
     public void onResume() {
         super.onResume();
         final String orderStr = preferences.getString("order", "filter1, filter2, filter3, filter4");
-        SparseArray<String> highlights = restaurant.getHighlights();
+        SparseArray<Highlight> highlights = restaurant.getHighlights();
         LinearLayout contentContainer = getView().findViewById(R.id.content);
         final PrimitiveIterator.OfInt iterator = Arrays.stream(orderStr.split(",", 5))
                 .map(String::trim)
@@ -110,14 +127,22 @@ public class RestaurantsFragment extends Fragment {
                 .iterator();
         for (int i = 3; i < 3 + 4 && iterator.hasNext(); i++) {
             TextView v = (TextView) contentContainer.getChildAt(i);
-            v.setText(highlights.valueAt(iterator.nextInt()));
+            v.setText(highlights.get(iterator.nextInt()).content);
         }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
+    public void onButtonPressed() {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onFragmentInteraction(this);
+        }
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            seen = true;
         }
     }
 
@@ -150,7 +175,10 @@ public class RestaurantsFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onFragmentInteraction(Fragment fragment);
+    }
+
+    public boolean isSeen() {
+        return seen;
     }
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,8 +36,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<SummaryViewHolder>
 
         //Use the provided View Holder on the onCreateViewHolder method to populate the current row on the RecyclerView
         holder.title.setText(list.get(position).getName());
-        holder.description.setText(list.get(position).getHighlights());
-        holder.imageView.setImageResource(list.get(position).getCover());
+        final SparseArray<Highlight> highlights = list.get(position).getHighlights();
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < highlights.size(); i++) {
+            builder.append(highlights.valueAt(i).content).append(" ");
+        }
+        holder.description.setText(builder.toString().trim());
+        holder.imageView.setImageResource(list.get(position).getCover().getId());
         holder.checkButton.setOnClickListener(v -> {
             Uri gmmIntentUri = Uri.parse("geo:0,0?q="+list.get(position).getLocation());
             Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);

@@ -52,4 +52,8 @@ public class Cover extends Inflatable<CardView> {
         cover.setImageDrawable(ResourcesCompat.getDrawable(root.getResources(), imageId, null));
         return coverCard;
     }
+
+    public int getId() {
+        return imageId;
+    }
 }

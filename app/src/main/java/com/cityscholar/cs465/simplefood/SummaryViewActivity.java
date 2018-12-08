@@ -33,7 +33,7 @@ public class SummaryViewActivity extends Activity {
         List<SummaryListData> data = fill_with_data();
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(data, getApplication());
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(ExampleRestaurants.TAKEN, getApplication());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

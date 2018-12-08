@@ -3,13 +3,14 @@ package com.cityscholar.cs465.simplefood;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.widget.ImageButton;
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends FragmentActivity
+        implements RestaurantsFragment.OnFragmentInteractionListener {
 
     private ImageButton buttonFilters;
     private ImageButton buttonSettings;
@@ -29,13 +30,6 @@ public class MainActivity extends FragmentActivity {
         viewPagerRestaurants.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener());
         viewPagerRestaurants.setPageMargin((int) (12 * getResources().getDisplayMetrics().density));
 
-        this.<ImageButton>findViewById(R.id.buttonCheck).setOnClickListener(v -> {
-            Uri gmmIntentUri = Uri.parse("geo:0,0?q=1600 Amphitheatre Parkway, Mountain+View, California");
-            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-            mapIntent.setPackage("com.google.android.apps.maps");
-            startActivity(mapIntent);
-        });
-
         buttonFilters = findViewById(R.id.buttonFilters);
         buttonFilters.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, FilterActivity.class);
@@ -54,7 +48,8 @@ public class MainActivity extends FragmentActivity {
         });
 
         this.<ImageButton>findViewById(R.id.buttonShuffle).setOnClickListener(v -> {
-            adapter.shuffle();
+            adapter.getNewBatch();
+            viewPagerRestaurants.setCurrentItem(0, true);
         });
     }
 
@@ -62,6 +57,11 @@ public class MainActivity extends FragmentActivity {
     protected void onResume() {
         super.onResume();
         adapter.setCount(sharedpreferences.getInt("limitNum", 10));
+    }
+
+    @Override
+    public void onFragmentInteraction(Fragment fragment) {
+        adapter.remove(fragment);
     }
 }
 

@@ -1,10 +1,7 @@
 package com.cityscholar.cs465.simplefood;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.v4.content.res.ResourcesCompat;
 import android.util.SparseArray;
 import com.cityscholar.cs465.simplefood.content.Cover;
 import com.cityscholar.cs465.simplefood.content.DetailText;
@@ -17,11 +14,11 @@ import java.util.List;
 public class Restaurant implements Parcelable {
     private final Cover cover;
     private final String name;
-    private final SparseArray<String> highlights;
+    private final SparseArray<Highlight> highlights;
     private final List<Inflatable> details;
     private final String location;
 
-    public Restaurant(Cover cover, String name, SparseArray<String> highlights, List<Inflatable> details, String location) {
+    public Restaurant(Cover cover, String name, SparseArray<Highlight> highlights, List<Inflatable> details, String location) {
         this.cover = cover;
         this.name = name;
         this.highlights = highlights;
@@ -42,7 +39,7 @@ public class Restaurant implements Parcelable {
     private Restaurant(Parcel in) {
         cover = in.readParcelable(Cover.class.getClassLoader());
         name = in.readString();
-        highlights = in.readSparseArray(String.class.getClassLoader());
+        highlights = in.readSparseArray(Highlight.class.getClassLoader());
         details = in.createTypedArrayList(Inflatable.CREATOR);
         location = in.readString();
     }
@@ -63,7 +60,7 @@ public class Restaurant implements Parcelable {
         return cover;
     }
 
-    public SparseArray<String> getHighlights() {
+    public SparseArray<Highlight> getHighlights() {
         return highlights;
     }
 
@@ -94,7 +91,7 @@ public class Restaurant implements Parcelable {
     public static class Builder {
         private boolean built = false;
         private Cover cover;
-        private SparseArray<String> highlights;
+        private SparseArray<Highlight> highlights;
         private List<Inflatable> details;
         private String name;
         private String location;
@@ -102,7 +99,6 @@ public class Restaurant implements Parcelable {
 
         public Builder() {
             highlights = new SparseArray<>();
-            highlights.append(0, "");
             details = new ArrayList<>();
         }
 
@@ -116,8 +112,8 @@ public class Restaurant implements Parcelable {
             return this;
         }
 
-        public Builder putHighlight(int type, String content) {
-            highlights.append(type, content);
+        public Builder putHighlight(int type, int level, String content) {
+            highlights.append(type, new Highlight(level, content));
             return this;
         }
 

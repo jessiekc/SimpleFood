@@ -64,51 +64,13 @@
         android:layout_height="0dp"
         android:clipToPadding="false"
         android:paddingTop="8dp"
-        android:paddingBottom="8dp"
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonCross"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonShuffle" />
-
-    <ImageButton
-        android:id="@+id/buttonCross"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_margin="0dp"
-        android:contentDescription="Cross"
-        android:src="@drawable/cross_icon"
-        android:tint="@color/cardview_light_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/buttonCheck" />
-    <!--<Button-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="60dp"-->
-        <!--android:layout_margin="0dp"-->
-        <!--android:backgroundTint="?android:attr/colorControlActivated"-->
-        <!--android:contentDescription="Check"-->
-        <!--android:text="See the map"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintHorizontal_weight="1"-->
-        <!--app:layout_constraintLeft_toRightOf="@+id/buttonCross"-->
-        <!--app:layout_constraintRight_toRightOf="parent"/>-->
-    <ImageButton
-        android:id="@+id/buttonCheck"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_margin="0dp"
-        android:backgroundTint="?android:attr/colorControlActivated"
-        android:contentDescription="Check"
-        android:src="@drawable/check_icon"
-        android:tint="@color/cardview_light_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintLeft_toRightOf="@+id/buttonCross"
-        app:layout_constraintRight_toRightOf="parent" />
-
 
 
 </android.support.constraint.ConstraintLayout>
