@@ -19,12 +19,14 @@ public class Restaurant implements Parcelable {
     private final String name;
     private final SparseArray<String> highlights;
     private final List<Inflatable> details;
+    private final String location;
 
-    public Restaurant(Cover cover, String name, SparseArray<String> highlights, List<Inflatable> details) {
+    public Restaurant(Cover cover, String name, SparseArray<String> highlights, List<Inflatable> details, String location) {
         this.cover = cover;
         this.name = name;
         this.highlights = highlights;
         this.details = details;
+        this.location = location;
     }
 
     @Override
@@ -42,6 +44,7 @@ public class Restaurant implements Parcelable {
         name = in.readString();
         highlights = in.readSparseArray(String.class.getClassLoader());
         details = in.createTypedArrayList(Inflatable.CREATOR);
+        location = in.readString();
     }
 
     public static final Creator<Restaurant> CREATOR = new Creator<Restaurant>() {
@@ -72,6 +75,8 @@ public class Restaurant implements Parcelable {
         return details;
     }
 
+    public String getLocation() {return location;}
+
     @Override
     public int describeContents() {
         return 0;
@@ -83,6 +88,7 @@ public class Restaurant implements Parcelable {
         dest.writeString(name);
         dest.writeSparseArray((SparseArray) highlights);
         dest.writeList(details);
+        dest.writeString(location);
     }
 
     public static class Builder {
@@ -91,6 +97,8 @@ public class Restaurant implements Parcelable {
         private SparseArray<String> highlights;
         private List<Inflatable> details;
         private String name;
+        private String location;
+
 
         public Builder() {
             highlights = new SparseArray<>();
@@ -123,10 +131,15 @@ public class Restaurant implements Parcelable {
             return this;
         }
 
+        public Builder setLocation(String location){
+            this.location = location;
+            return this;
+        }
+
         public Restaurant build() {
             if (!built) {
                 built = true;
-                return new Restaurant(cover, name, highlights, details);
+                return new Restaurant(cover, name, highlights, details, location);
             }
             throw new RuntimeException("Restaurants already instantiated!");
         }
