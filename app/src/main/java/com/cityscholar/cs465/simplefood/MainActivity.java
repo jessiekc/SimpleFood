@@ -4,9 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.widget.ImageButton;
 
 public class MainActivity extends FragmentActivity
@@ -17,12 +19,14 @@ public class MainActivity extends FragmentActivity
     private ImageButton buttonSummary;
     private MyFragmentStateAdapter adapter;
     private SharedPreferences sharedpreferences;
+    private SharedPreferences filterPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         sharedpreferences = getSharedPreferences("com.example.myapp.PREFERENCE_FILE_KEY", Context.MODE_PRIVATE);
+        filterPreferences = getSharedPreferences(FilterActivity.PREFS, Context.MODE_PRIVATE);
 
         ViewPager viewPagerRestaurants = findViewById(R.id.viewPagerRestaurants);
         adapter = new MyFragmentStateAdapter(getSupportFragmentManager(), sharedpreferences.getInt("limitNum", 10));
@@ -33,7 +37,7 @@ public class MainActivity extends FragmentActivity
         buttonFilters = findViewById(R.id.buttonFilters);
         buttonFilters.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, FilterActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent, 0x1010);
         });
 
         buttonSettings = findViewById(R.id.buttonSettings);
@@ -57,6 +61,14 @@ public class MainActivity extends FragmentActivity
     protected void onResume() {
         super.onResume();
         adapter.setCount(sharedpreferences.getInt("limitNum", 10));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0x1010 && resultCode == RESULT_OK && data.getIntExtra("changed", 0) == 1) {
+            adapter.changeFilter();
+        }
     }
 
     @Override

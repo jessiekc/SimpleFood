@@ -81,7 +81,7 @@ public class RestaurantsFragment extends Fragment {
         contentContainer.<TextView>findViewById(R.id.titleRestaurant).setText(restaurant.getName());
         contentContainer.addView(restaurant.getCover().inflate(inflater, contentContainer, false), 1);
 
-        preferences = getContext().getSharedPreferences(FilterActivity.PREFS, Context.MODE_PRIVATE);
+        preferences = container.getContext().getSharedPreferences(FilterActivity.PREFS, Context.MODE_PRIVATE);
         final String orderStr = preferences.getString("order", "filter1, filter2, filter3, filter4");
         SparseArray<Highlight> highlights = restaurant.getHighlights();
         Arrays.stream(orderStr.split(",", 5))

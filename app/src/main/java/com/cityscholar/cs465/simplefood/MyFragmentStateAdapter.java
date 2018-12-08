@@ -67,8 +67,10 @@ public class MyFragmentStateAdapter extends FragmentStatePagerAdapter {
         notifyDataSetChanged();
     }
 
-    public void changeFilter(List<Integer> order, SparseArray<Integer> levels) {
-        ExampleRestaurants.sort(order, levels);
+    public void changeFilter() {
+        ExampleRestaurants.sort();
+        cached.clear();
+        notifyDataSetChanged();
     }
 
     public void remove(Fragment fragment) {

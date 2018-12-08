@@ -2,10 +2,7 @@ package com.cityscholar.cs465.simplefood;
 
 import android.util.SparseArray;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class ExampleRestaurants {
     private static final List<String> highlights = Arrays.asList("", "This restaurants has low price",
@@ -211,21 +208,22 @@ public class ExampleRestaurants {
         return newList;
     }
 
-    public static void sort(List<Integer> order, SparseArray<Integer> levels) {
+    public static void sort() {
         RESTAURANTS.addAll(TAKEN);
         TAKEN.clear();
-        RESTAURANTS.sort(Comparator.comparingInt(r -> {
-            final SparseArray<Highlight> highlights = r.getHighlights();
-            int weight = 1 << order.size();
-            int res = 0;
-            for (Integer type : order) {
-                if (highlights.get(type).level == levels.get(type)) {
-                    res += weight;
-                }
-                weight >>= 1;
-            }
-            return res;
-        }));
+//        RESTAURANTS.sort(Comparator.comparingInt(r -> {
+//            final SparseArray<Highlight> highlights = r.getHighlights();
+//            int weight = 1 << order.size();
+//            int res = 0;
+//            for (Integer type : order) {
+//                if (highlights.get(type).level == levels.get(type)) {
+//                    res += weight;
+//                }
+//                weight >>= 1;
+//            }
+//            return res;
+//        }));
+        Collections.shuffle(RESTAURANTS);
     }
 
     public static Restaurant take() {

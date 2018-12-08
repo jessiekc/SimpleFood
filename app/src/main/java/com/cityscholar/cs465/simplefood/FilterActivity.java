@@ -2,6 +2,7 @@ package com.cityscholar.cs465.simplefood;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -55,28 +56,28 @@ public class FilterActivity extends Activity implements AdapterView.OnItemSelect
 //            }
 //        }
 
-        Spinner spinner = findViewById(R.id.filter1);
+        Spinner spinner = filt1.findViewById(R.id.filter1);
         List<String> spinnerArray = buildSpinOptions(sharedpreferences.getString("filter1", "Less than $10"), "Less than $10", "$10-$20", "$20-$30", "More than $30");
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
-        spinner = findViewById(R.id.filter2);
+        spinner = filt2.findViewById(R.id.filter2);
         spinnerArray = buildSpinOptions(sharedpreferences.getString("filter2", "Less than 1 mile"), "Less than 1 mile", "1-5 miles", "5-10 miles", "More than 10 miles");
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
-        spinner = findViewById(R.id.filter3);
+        spinner = filt3.findViewById(R.id.filter3);
         spinnerArray = buildSpinOptions(sharedpreferences.getString("filter3", "chinese"), "chinese", "mexican", "thai", "mediterranean");
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
-        spinner = findViewById(R.id.filter4);
+        spinner = filt4.findViewById(R.id.filter4);
         spinnerArray = buildSpinOptions(sharedpreferences.getString("filter4", "familiar"), "familiar", "kinda familiar", "new");
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -135,7 +136,9 @@ public class FilterActivity extends Activity implements AdapterView.OnItemSelect
         sharedpreferences = getSharedPreferences(PREFS,
                 Context.MODE_PRIVATE);
         Log.d(TAG, sharedpreferences.getAll().toString());
-
+        final Intent data = new Intent();
+        data.putExtra("changed", 1);
+        setResult(RESULT_OK, data);
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
