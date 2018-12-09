@@ -32,29 +32,33 @@ public class FilterActivity extends Activity implements AdapterView.OnItemSelect
 
         sharedpreferences = getSharedPreferences(PREFS,
                 Context.MODE_PRIVATE);
-        String filtsOrder = sharedpreferences.getString("order", "filter1, filter2, filter3, filter4");
+        String filtsOrder = sharedpreferences.getString("order", "filter1,filter2,filter3,filter4");
         String[] filtsOrderArray = filtsOrder.split(",", 5);
         DragLinearLayout dragLinearLayout = findViewById(R.id.filtersContainer);
 
-//        int childCount = dragLinearLayout.getChildCount();
-//        for(int i = 0; i < childCount; i++){
-//            dragLinearLayout.removeViewAt(0);
-//        }
-//
-//        for(int i = 0; i < childCount; i++){
-//            if(filtsOrderArray[i].equals("filter1")){
-//                dragLinearLayout.addView(filt1, i);
-//            }
-//            else if(filtsOrderArray[i].equals("filter2")){
-//                dragLinearLayout.addView(filt2, i);
-//            }
-//            else if(filtsOrderArray[i].equals("filter3")){
-//                dragLinearLayout.addView(filt3, i);
-//            }
-//            else if(filtsOrderArray[i].equals("filter4")){
-//                dragLinearLayout.addView(filt4, i);
-//            }
-//        }
+        int childCount = dragLinearLayout.getChildCount();
+        for(int i = 0; i < childCount; i++){
+            dragLinearLayout.removeViewAt(0);
+        }
+
+        for(int i = 0; i < childCount; i++){
+            if(filtsOrderArray[i].equals("filter1")){
+                dragLinearLayout.addView(filt1, i);
+                changeWeight(filt1, 4-i);
+            }
+            else if(filtsOrderArray[i].equals("filter2")){
+                dragLinearLayout.addView(filt2, i);
+                changeWeight(filt2, 4-i);
+            }
+            else if(filtsOrderArray[i].equals("filter3")){
+                dragLinearLayout.addView(filt3, i);
+                changeWeight(filt3, 4-i);
+            }
+            else if(filtsOrderArray[i].equals("filter4")){
+                dragLinearLayout.addView(filt4, i);
+                changeWeight(filt4, 4-i);
+            }
+        }
 
         Spinner spinner = filt1.findViewById(R.id.filter1);
         List<String> spinnerArray = buildSpinOptions(sharedpreferences.getString("filter1", "Less than $10"), "Less than $10", "$10-$20", "$20-$30", "More than $30");
