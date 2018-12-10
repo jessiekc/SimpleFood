@@ -8,8 +8,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
+import android.util.SparseIntArray;
 import android.widget.ImageButton;
+import com.cityscholar.cs465.simplefood.options.Option;
+
+import java.util.Arrays;
 
 public class MainActivity extends FragmentActivity
         implements RestaurantsFragment.OnFragmentInteractionListener {
@@ -30,6 +33,7 @@ public class MainActivity extends FragmentActivity
 
         ViewPager viewPagerRestaurants = findViewById(R.id.viewPagerRestaurants);
         adapter = new MyFragmentStateAdapter(getSupportFragmentManager(), sharedpreferences.getInt("limitNum", 10));
+        change();
         viewPagerRestaurants.setAdapter(adapter);
         viewPagerRestaurants.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener());
         viewPagerRestaurants.setPageMargin((int) (12 * getResources().getDisplayMetrics().density));
@@ -66,9 +70,23 @@ public class MainActivity extends FragmentActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 0x1010 && resultCode == RESULT_OK && data.getIntExtra("changed", 0) == 1) {
-            adapter.changeFilter();
+        if (requestCode == 0x1010 && resultCode == RESULT_OK && data != null && data.getBooleanExtra("changed", false)) {
+            change();
         }
+    }
+
+    private void change() {
+        final String orderStr = filterPreferences.getString("order", "filter1, filter2, filter3, filter4");
+        final int[] order = Arrays.stream(orderStr.split(",", 5))
+                .map(String::trim)
+                .mapToInt(s -> Integer.parseInt(s.substring("filter".length())))
+                .toArray();
+        SparseIntArray map = new SparseIntArray(order.length);
+        for (int filter : order) {
+            final String index = "filter" + filter;
+            map.put(filter, Option.getIndex(index, filterPreferences.getString(index, Option.getDefault(index))));
+        }
+        adapter.changeFilter(order, map);
     }
 
     @Override

@@ -28,10 +28,6 @@ import java.util.PrimitiveIterator;
  * create an instance of this fragment.
  */
 public class RestaurantsFragment extends Fragment {
-    private static final List<String> highlights = Arrays.asList("This restaurants has low price",
-            "This restaurants is very close",
-            "This is a Chinese restaurants",
-            "This restaurants is similar to what you've been to");
     private static final String TAG = RestaurantsFragment.class.getSimpleName();
     private static final String RESTAURANT = "restaurant";
 
@@ -55,7 +51,7 @@ public class RestaurantsFragment extends Fragment {
     public static RestaurantsFragment newInstance(Restaurant restaurant) {
         RestaurantsFragment fragment = new RestaurantsFragment();
         Bundle args = new Bundle();
-        Log.d(TAG, restaurant.toString());
+        Log.d(TAG, "Restaurant created" + restaurant.toString());
         args.putParcelable(RESTAURANT, restaurant);
         fragment.setArguments(args);
         return fragment;
@@ -67,8 +63,7 @@ public class RestaurantsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             restaurant = getArguments().getParcelable(RESTAURANT);
-            Log.d(TAG, "Get Parcelable");
-            Log.d(TAG, restaurant.toString());
+            Log.d(TAG, "Get Parcelable: " + restaurant.toString());
         }
     }
 
@@ -86,11 +81,11 @@ public class RestaurantsFragment extends Fragment {
         SparseArray<Highlight> highlights = restaurant.getHighlights();
         Arrays.stream(orderStr.split(",", 5))
                 .map(String::trim)
-                .peek(s -> Log.d(TAG, s))
+                .peek(s -> Log.d(TAG, "onCreateView get filter: " + s))
                 .mapToInt(s -> Character.getNumericValue(s.charAt("filter".length())))
                 .forEach(i -> {
                     TextView highlight = (TextView) inflater.inflate(R.layout.item_highlight, contentContainer, false);
-                    Log.d(TAG, String.valueOf(i));
+                    Log.d(TAG, "Convert String to value: " + i);
                     highlight.setText(highlights.get(i).content);
                     contentContainer.addView(highlight, contentContainer.getChildCount() - 1);
                 });
@@ -122,7 +117,7 @@ public class RestaurantsFragment extends Fragment {
         LinearLayout contentContainer = getView().findViewById(R.id.content);
         final PrimitiveIterator.OfInt iterator = Arrays.stream(orderStr.split(",", 5))
                 .map(String::trim)
-                .peek(s -> Log.d(TAG, s))
+                .peek(s -> Log.d(TAG, "onResume get filter: " + s))
                 .mapToInt(s -> Character.getNumericValue(s.charAt("filter".length())))
                 .iterator();
         for (int i = 3; i < 3 + 4 && iterator.hasNext(); i++) {

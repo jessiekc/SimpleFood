@@ -5,8 +5,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.SparseArray;
+import android.util.SparseIntArray;
 
 import java.util.List;
+import java.util.Map;
 
 public class MyFragmentStateAdapter extends FragmentStatePagerAdapter {
     private int count;
@@ -67,8 +69,8 @@ public class MyFragmentStateAdapter extends FragmentStatePagerAdapter {
         notifyDataSetChanged();
     }
 
-    public void changeFilter() {
-        ExampleRestaurants.sort();
+    public void changeFilter(int[] order, SparseIntArray map) {
+        ExampleRestaurants.sort(order, map);
         cached.clear();
         notifyDataSetChanged();
     }

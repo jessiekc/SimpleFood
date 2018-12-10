@@ -5,14 +5,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+import com.cityscholar.cs465.simplefood.options.*;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FilterActivity extends Activity implements AdapterView.OnItemSelectedListener {
     private static final String TAG = FilterActivity.class.getSimpleName();
@@ -20,9 +24,15 @@ public class FilterActivity extends Activity implements AdapterView.OnItemSelect
     SharedPreferences sharedpreferences;
     public static final String PREFS = "PREFS";
 
+    @Nullable
+    private Map<String, ?> settings = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (savedInstanceState != null) {
+            settings = (Map<String, ?>) savedInstanceState.getSerializable("savedSettings");
+        }
         setContentView(R.layout.activity_filters);
 
         RelativeLayout filt1 = findViewById(R.id.filter1container);
@@ -32,6 +42,13 @@ public class FilterActivity extends Activity implements AdapterView.OnItemSelect
 
         sharedpreferences = getSharedPreferences(PREFS,
                 Context.MODE_PRIVATE);
+        if (savedInstanceState != null) {
+            savedInstanceState.putSerializable("savedSettings", new HashMap<>(sharedpreferences.getAll()));
+            if (!sharedpreferences.getAll().equals(settings)) {
+                setResultSettingChanged();
+                Log.d(TAG, "setting changed onCreate");
+            }
+        }
         String filtsOrder = sharedpreferences.getString("order", "filter1,filter2,filter3,filter4");
         String[] filtsOrderArray = filtsOrder.split(",", 5);
         DragLinearLayout dragLinearLayout = findViewById(R.id.filtersContainer);
@@ -61,28 +78,28 @@ public class FilterActivity extends Activity implements AdapterView.OnItemSelect
         }
 
         Spinner spinner = filt1.findViewById(R.id.filter1);
-        List<String> spinnerArray = buildSpinOptions(sharedpreferences.getString("filter1", "Less than $10"), "Less than $10", "$10-$20", "$20-$30", "More than $30");
+        List<String> spinnerArray = buildSpinOptions(sharedpreferences.getString("filter1", PriceOption.getInstance().getDefault()), PriceOption.getInstance().getAll());
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
         spinner = filt2.findViewById(R.id.filter2);
-        spinnerArray = buildSpinOptions(sharedpreferences.getString("filter2", "Less than 1 mile"), "Less than 1 mile", "1-5 miles", "5-10 miles", "More than 10 miles");
+        spinnerArray = buildSpinOptions(sharedpreferences.getString("filter2", DistanceOption.getInstance().getDefault()), DistanceOption.getInstance().getAll());
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
         spinner = filt3.findViewById(R.id.filter3);
-        spinnerArray = buildSpinOptions(sharedpreferences.getString("filter3", "chinese"), "chinese", "mexican", "thai", "mediterranean");
+        spinnerArray = buildSpinOptions(sharedpreferences.getString("filter3", CuisineOption.getInstance().getDefault()), CuisineOption.getInstance().getAll());
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
         spinner = filt4.findViewById(R.id.filter4);
-        spinnerArray = buildSpinOptions(sharedpreferences.getString("filter4", "familiar"), "familiar", "kinda familiar", "new");
+        spinnerArray = buildSpinOptions(sharedpreferences.getString("filter4", FamiliarityOption.getInstance().getDefault()), FamiliarityOption.getInstance().getAll());
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
@@ -118,31 +135,46 @@ public class FilterActivity extends Activity implements AdapterView.OnItemSelect
 
     }
 
+    private void setResultSettingChanged() {
+        Intent intent = new Intent();
+        intent.putExtra("changed", true);
+        setResult(RESULT_OK, intent);
+    }
+
     private void Save(String filter, String option){
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putString(filter, option);
         editor.apply();
+        if (!sharedpreferences.getAll().equals(settings)) {
+            Log.d(TAG, "setting changed Save");
+            setResultSettingChanged();
+        }
     }
 
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
 
-        if(parent.getId() == R.id.filter1) {
-            Save("filter1", parent.getItemAtPosition(pos).toString());
-        } else if (parent.getId() == R.id.filter2){
-           Save("filter2", parent.getItemAtPosition(pos).toString());
-        } else if (parent.getId() == R.id.filter3){
-            Save("filter3", parent.getItemAtPosition(pos).toString());
-        } else if (parent.getId() == R.id.filter4){
-            Save("filter4", parent.getItemAtPosition(pos).toString());
-        }
+        String filter = getFilterName(parent);
+        Save(filter, parent.getItemAtPosition(pos).toString());
         Save("order", getOrder());
         sharedpreferences = getSharedPreferences(PREFS,
                 Context.MODE_PRIVATE);
         Log.d(TAG, sharedpreferences.getAll().toString());
-        final Intent data = new Intent();
-        data.putExtra("changed", 1);
-        setResult(RESULT_OK, data);
+    }
+
+    private String getFilterName(AdapterView<?> parent) {
+        switch (parent.getId()) {
+            case R.id.filter1:
+                return "filter1";
+            case R.id.filter2:
+                return "filter2";
+            case R.id.filter3:
+                return "filter3";
+            case R.id.filter4:
+                return "filter4";
+            default:
+                throw new IllegalStateException("Error id");
+        }
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
