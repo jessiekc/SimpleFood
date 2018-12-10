@@ -317,41 +317,55 @@ public class ExampleRestaurants {
                     .build()
 
     ));
-    public static final List<Restaurant> TAKEN = new ArrayList<>();
+    private static List<Restaurant> TAKEN = new ArrayList<>();
 
-    public static final int reserve(int number) {
-        return number > RESTAURANTS.size() ? RESTAURANTS.size() : number;
-    }
-
-    public static List<Restaurant> take(int number) {
-        List<Restaurant> newList = new ArrayList<>();
-        while (number > 0) {
-            number--;
-            newList.add(RESTAURANTS.remove(RESTAURANTS.size() - 1));
+    public static int reserve(int number) {
+        while (TAKEN.size() < number && !RESTAURANTS.isEmpty()) {
+            TAKEN.add(RESTAURANTS.remove(RESTAURANTS.size() - 1));
         }
-        TAKEN.addAll(newList);
-        return newList;
+        return TAKEN.size();
     }
 
     public static void sort(int[] order, SparseIntArray levels) {
         RESTAURANTS.addAll(TAKEN);
         TAKEN.clear();
-        RESTAURANTS.sort(Comparator.comparingInt(r -> {
+        RESTAURANTS.sort(Comparator.comparingDouble(r -> {
             final SparseArray<Highlight> highlights = r.getHighlights();
             int weight = 1 << order.length;
-            int res = 0;
+            double res = 0;
             for (int type : order) {
-                if (highlights.get(type).level == levels.get(type)) {
-                    res += weight;
+                if (type == FilterType.CUISINE) {
+                    if (highlights.get(type).level == levels.get(type)) {
+                        res += weight;
+                    }
+                } else {
+                    double relativeDiff = Math.abs(highlights.get(type).level - levels.get(type));
+                    relativeDiff /= 4;
+                    res += weight * (1 - relativeDiff);
                 }
                 weight >>= 1;
             }
             return res;
         }));
-        Collections.shuffle(RESTAURANTS);
     }
 
-    public static Restaurant take() {
-        return take(1).get(0);
+    public static void remove(int i) {
+        TAKEN.remove(i);
+    }
+
+    public static void removeUntil(int i) {
+        if (i >= TAKEN.size()) {
+            TAKEN.clear();
+        } else {
+            TAKEN = new ArrayList<>(TAKEN.subList(i, TAKEN.size()));
+        }
+    }
+
+    public static Restaurant get(int i) {
+        return TAKEN.get(i);
+    }
+
+    public static List<Restaurant> getAll() {
+        return TAKEN;
     }
 }

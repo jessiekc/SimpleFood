@@ -43,7 +43,7 @@ public class Option {
                 return i;
             }
         }
-        throw new IllegalArgumentException("No such option!");
+        throw new IllegalArgumentException("No such option! " + option);
     }
 
     public String getDescription(String option) {

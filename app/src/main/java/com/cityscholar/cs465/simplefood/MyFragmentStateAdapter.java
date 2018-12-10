@@ -12,11 +12,13 @@ import java.util.Map;
 
 public class MyFragmentStateAdapter extends FragmentStatePagerAdapter {
     private int count;
+    private int initialCount;
     private final SparseArray<Object> cached;
 
     public MyFragmentStateAdapter(FragmentManager fm, int count) {
         super(fm);
-        this.count = ExampleRestaurants.reserve(count);
+        this.initialCount = count;
+        this.count = ExampleRestaurants.reserve(this.initialCount);
         cached = new SparseArray<>(this.count);
     }
 
@@ -32,7 +34,7 @@ public class MyFragmentStateAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int i) {
         RestaurantsFragment fragment = (RestaurantsFragment) cached.get(i);
         if (fragment == null) {
-            fragment = RestaurantsFragment.newInstance(ExampleRestaurants.take());
+            fragment = RestaurantsFragment.newInstance(ExampleRestaurants.get(i));
             cached.put(i, fragment);
         }
         return fragment;
@@ -44,39 +46,40 @@ public class MyFragmentStateAdapter extends FragmentStatePagerAdapter {
     }
 
     public void setCount(int count) {
-        if (count != this.count) {
-            if (count < cached.size()) {
-                this.count = count;
-            } else {
-                this.count = ExampleRestaurants.reserve(count - cached.size()) + cached.size();
-            }
+        if (initialCount != count) {
+            this.initialCount = count;
+            this.count = ExampleRestaurants.reserve(this.initialCount);
             notifyDataSetChanged();
         }
     }
 
     public void getNewBatch() {
-        for (int i = 0; i < cached.size(); ) {
-            final RestaurantsFragment o = (RestaurantsFragment) cached.valueAt(i);
-            if (o.isSeen()) {
-                cached.removeAt(i);
-            } else {
-                i++;
+        int i = 0;
+        for (; i <= count; i++) {
+            final RestaurantsFragment o = (RestaurantsFragment) cached.get(i);
+            if (o == null || !o.isSeen()) {
+                break;
             }
         }
-        if (count > cached.size()) {
-            count = ExampleRestaurants.reserve(count - cached.size()) + cached.size();
-        }
+        ExampleRestaurants.removeUntil(i);
+        cached.clear();
+        this.count = ExampleRestaurants.reserve(this.initialCount);
         notifyDataSetChanged();
     }
 
     public void changeFilter(int[] order, SparseIntArray map) {
         ExampleRestaurants.sort(order, map);
         cached.clear();
+        this.count = ExampleRestaurants.reserve(this.initialCount);
         notifyDataSetChanged();
     }
 
     public void remove(Fragment fragment) {
-        cached.removeAt(cached.indexOfValue(fragment));
+        int key = cached.keyAt(cached.indexOfValue(fragment));
+        ExampleRestaurants.remove(key);
+        for (int k = count; k >= key; k--) {
+            cached.remove(k);
+        }
         count -= 1;
         notifyDataSetChanged();
     }

@@ -23,6 +23,7 @@ public class MainActivity extends FragmentActivity
     private MyFragmentStateAdapter adapter;
     private SharedPreferences sharedpreferences;
     private SharedPreferences filterPreferences;
+    private ViewPager viewPagerRestaurants;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,7 @@ public class MainActivity extends FragmentActivity
         sharedpreferences = getSharedPreferences("com.example.myapp.PREFERENCE_FILE_KEY", Context.MODE_PRIVATE);
         filterPreferences = getSharedPreferences(FilterActivity.PREFS, Context.MODE_PRIVATE);
 
-        ViewPager viewPagerRestaurants = findViewById(R.id.viewPagerRestaurants);
+        viewPagerRestaurants = findViewById(R.id.viewPagerRestaurants);
         adapter = new MyFragmentStateAdapter(getSupportFragmentManager(), sharedpreferences.getInt("limitNum", 10));
         change();
         viewPagerRestaurants.setAdapter(adapter);
@@ -87,6 +88,7 @@ public class MainActivity extends FragmentActivity
             map.put(filter, Option.getIndex(index, filterPreferences.getString(index, Option.getDefault(index))));
         }
         adapter.changeFilter(order, map);
+        viewPagerRestaurants.setCurrentItem(0, true);
     }
 
     @Override
