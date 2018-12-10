@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageButton;
@@ -13,7 +14,7 @@ import android.widget.ImageButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SummaryViewActivity extends Activity {
+public class SummaryViewActivity extends AppCompatActivity {
     private ImageButton buttonDetail;
     private ImageButton buttonSettings;
     private ImageButton buttonFilters;

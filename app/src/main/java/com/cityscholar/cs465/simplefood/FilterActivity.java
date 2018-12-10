@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FilterActivity extends Activity implements AdapterView.OnItemSelectedListener {
+public class FilterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private static final String TAG = FilterActivity.class.getSimpleName();
 
     SharedPreferences sharedpreferences;

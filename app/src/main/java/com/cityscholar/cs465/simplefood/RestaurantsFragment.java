@@ -37,6 +37,8 @@ public class RestaurantsFragment extends Fragment {
     private SharedPreferences preferences;
     private boolean seen = false;
 
+    private Long latestVisible = null;
+
     public RestaurantsFragment() {
         // Required empty public constructor
     }
@@ -129,7 +131,7 @@ public class RestaurantsFragment extends Fragment {
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed() {
         if (mListener != null) {
-            mListener.onFragmentInteraction(this);
+            mListener.onFragmentInteraction(this, System.nanoTime() - latestVisible);
         }
     }
 
@@ -138,6 +140,7 @@ public class RestaurantsFragment extends Fragment {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
             seen = true;
+            latestVisible = System.nanoTime();
         }
     }
 
@@ -170,7 +173,7 @@ public class RestaurantsFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(Fragment fragment);
+        void onFragmentInteraction(Fragment fragment, long duration);
     }
 
     public boolean isSeen() {

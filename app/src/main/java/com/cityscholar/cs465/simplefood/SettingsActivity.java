@@ -7,13 +7,14 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class SettingsActivity extends Activity {
+public class SettingsActivity extends AppCompatActivity {
     private GridView allergyGridView;
     private GridViewAdapter gridAdapter;
 
