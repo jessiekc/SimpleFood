@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onFragmentInteraction(Fragment fragment, long duration) {
         adapter.remove(fragment);
-        if (duration / 1000000.0 < 500) {
+        if (duration / 1000000.0 < 800) {
             Snackbar.make(MainActivity.this.findViewById(R.id.main),
                     "You just made a quick dismiss", Snackbar.LENGTH_LONG)
                     .setAction("Tell us why", v -> {
