@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity
         buttonSummary = findViewById(R.id.buttonSummary);
         buttonSummary.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, SummaryViewActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent, 0x1011);
         });
 
         this.<ImageButton>findViewById(R.id.buttonShuffle).setOnClickListener(v -> {
@@ -92,8 +92,12 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 0x1010 && resultCode == RESULT_OK && data != null && data.getBooleanExtra("changed", false)) {
-            change();
+        if (resultCode == RESULT_OK && data != null) {
+            if (requestCode == 0x1010 && data.getBooleanExtra("changed", false)) {
+                change();
+            } else if (requestCode == 0x1011 && data.getBooleanExtra("dismissed", false)) {
+                adapter.forceUpdate();
+            }
         }
     }
 

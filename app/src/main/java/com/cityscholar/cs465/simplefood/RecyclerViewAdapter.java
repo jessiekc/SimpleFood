@@ -1,5 +1,6 @@
 package com.cityscholar.cs465.simplefood;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -49,9 +50,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<SummaryViewHolder>
             mapIntent.setPackage("com.google.android.apps.maps");
             v.getContext().startActivity(mapIntent);
         });
-        //todo cross button
-        //animate(holder);
-
+        holder.crossButton.setOnClickListener(v -> {
+            ExampleRestaurants.remove(position);
+            RecyclerViewAdapter.this.notifyDataSetChanged();
+            Intent intent = new Intent();
+            intent.putExtra("dismissed", true);
+            ((Activity) v.getContext()).setResult(Activity.RESULT_OK, intent);
+        });
     }
 
     @Override

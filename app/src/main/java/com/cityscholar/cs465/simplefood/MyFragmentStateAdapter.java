@@ -83,4 +83,9 @@ public class MyFragmentStateAdapter extends FragmentStatePagerAdapter {
         count -= 1;
         notifyDataSetChanged();
     }
+
+    public void forceUpdate() {
+        cached.clear();
+        notifyDataSetChanged();
+    }
 }
