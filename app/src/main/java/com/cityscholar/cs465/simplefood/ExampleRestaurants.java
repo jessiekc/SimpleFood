@@ -259,11 +259,11 @@ public class ExampleRestaurants {
                     .setName("Wood")
                     .setCover(R.drawable.restaurant13_img)
                     .putHighlight(FilterType.PRICE,
-                            PriceOption.getInstance().getIndex(PriceOption.MORE_THAN_$_30),
-                            PriceOption.getInstance().getDescription(PriceOption.MORE_THAN_$_30))
+                            PriceOption.getInstance().getIndex(PriceOption.LESS_THAN_$_10),
+                            PriceOption.getInstance().getDescription(PriceOption.LESS_THAN_$_10))
                     .putHighlight(FilterType.DISTANCE,
-                            DistanceOption.getInstance().getIndex(DistanceOption.MILES),
-                            DistanceOption.getInstance().getDescription(DistanceOption.MILES))
+                            DistanceOption.getInstance().getIndex(DistanceOption.MILES1),
+                            DistanceOption.getInstance().getDescription(DistanceOption.MILES1))
                     .putHighlight(FilterType.CUISINE,
                             CuisineOption.getInstance().getIndex(CuisineOption.AMERICAN),
                             CuisineOption.getInstance().getDescription(CuisineOption.AMERICAN))
@@ -299,8 +299,68 @@ public class ExampleRestaurants {
                     .setName("Chilam Balam")
                     .setCover(R.drawable.restaurant15_img)
                     .putHighlight(FilterType.PRICE,
+                            PriceOption.getInstance().getIndex(PriceOption.$_10_$_20),
+                            PriceOption.getInstance().getDescription(PriceOption.$_10_$_20))
+                    .putHighlight(FilterType.DISTANCE,
+                            DistanceOption.getInstance().getIndex(DistanceOption.MORE_THAN_10_MILES),
+                            DistanceOption.getInstance().getDescription(DistanceOption.MORE_THAN_10_MILES))
+                    .putHighlight(FilterType.CUISINE,
+                            CuisineOption.getInstance().getIndex(CuisineOption.AMERICAN),
+                            CuisineOption.getInstance().getDescription(CuisineOption.AMERICAN))
+                    .putHighlight(FilterType.FAMILIARITY,
+                            FamiliarityOption.getInstance().getIndex(FamiliarityOption.FAMILIAR),
+                            FamiliarityOption.getInstance().getDescription(FamiliarityOption.FAMILIAR))
+                    .appendDetail("The creative Mexican restaurant in East Lakeview gets more accolades from the Michelin Guide.")
+                    .appendDetail(R.drawable.restaurant15_detail_img1, "Desserts")
+                    .appendDetail(R.drawable.restaurant15_detail_img2, "Fried Avocadoes with Lobster Sauce")
+                    .setLocation("3023 N Broadway, Chicago, IL 60657")
+                    .build(),
+            new Restaurant.Builder()
+                    .setName("Oriole")
+                    .setCover(R.drawable.restaurant16_img)
+                    .putHighlight(FilterType.PRICE,
                             PriceOption.getInstance().getIndex(PriceOption.MORE_THAN_$_30),
                             PriceOption.getInstance().getDescription(PriceOption.MORE_THAN_$_30))
+                    .putHighlight(FilterType.DISTANCE,
+                            DistanceOption.getInstance().getIndex(DistanceOption.LESS_THAN_1_MILE),
+                            DistanceOption.getInstance().getDescription(DistanceOption.LESS_THAN_1_MILE))
+                    .putHighlight(FilterType.CUISINE,
+                            CuisineOption.getInstance().getIndex(CuisineOption.AMERICAN),
+                            CuisineOption.getInstance().getDescription(CuisineOption.AMERICAN))
+                    .putHighlight(FilterType.FAMILIARITY,
+                            FamiliarityOption.getInstance().getIndex(FamiliarityOption.KINDA_FAMILIAR),
+                            FamiliarityOption.getInstance().getDescription(FamiliarityOption.KINDA_FAMILIAR))
+                    .appendDetail("2016 saw a slew of great restaurant openings but Noah Sandoval’s West Loop stunner perhaps shined the brightest. He, along with his wife Cara, are leading the way for a new generation of fine dining that’s coupling refined, upscale dishes on its tasting menu, from its caviar starter staple to a Japanese A5 Wagyu, all in a laid-back experience. Critics and diners alike have been impressed, with the Michelin Guide awarding the restaurant two stars in its first year.")
+                    .appendDetail(R.drawable.restaurant16_detail_img1, "Malpeque Oyster")
+                    .appendDetail(R.drawable.restaurant16_detail_img2, "Dessert")
+                    .setLocation("661 W Walnut St, Chicago, IL 60661")
+                    .build(),
+            new Restaurant.Builder()
+                    .setName("Smyth + The Loyalist")
+                    .setCover(R.drawable.restaurant17_img)
+                    .putHighlight(FilterType.PRICE,
+                            PriceOption.getInstance().getIndex(PriceOption.$_10_$_20),
+                            PriceOption.getInstance().getDescription(PriceOption.$_10_$_20))
+                    .putHighlight(FilterType.DISTANCE,
+                            DistanceOption.getInstance().getIndex(DistanceOption.MILES1),
+                            DistanceOption.getInstance().getDescription(DistanceOption.MILES1))
+                    .putHighlight(FilterType.CUISINE,
+                            CuisineOption.getInstance().getIndex(CuisineOption.AMERICAN),
+                            CuisineOption.getInstance().getDescription(CuisineOption.AMERICAN))
+                    .putHighlight(FilterType.FAMILIARITY,
+                            FamiliarityOption.getInstance().getIndex(FamiliarityOption.NEW),
+                            FamiliarityOption.getInstance().getDescription(FamiliarityOption.NEW))
+                    .appendDetail("It’s not often that one finds two-Michelin-starred fine dining and one of the country’s best burgers in one place. But that and more are what draw eaters to Smyth and The Loyalist — John and Karen Urie Shields’ bi-level destination in the West Loop where diners are awed by the rural-inspired farm-fueled tasting menus upstairs at the upscale Smyth and the burgers, cocktails, and creative bar food downstairs at The Loyalist. Prepare to make reservations well in advance and open the wallet upstairs ($95-205 depending on the number of courses splurged for), but walk-ins are taken downstairs and one can even sit at the bar.")
+                    .appendDetail(R.drawable.restaurant17_detail_img1, "Squab River Mouse")
+                    .appendDetail(R.drawable.restaurant17_detail_img2, "Dry Aged Squab")
+                    .setLocation("177 N Ada St #101, Chicago, IL 60607")
+                    .build(),
+            new Restaurant.Builder()
+                    .setName("Monteverde")
+                    .setCover(R.drawable.restaurant18_img)
+                    .putHighlight(FilterType.PRICE,
+                            PriceOption.getInstance().getIndex(PriceOption.$_20_$_30),
+                            PriceOption.getInstance().getDescription(PriceOption.$_20_$_30))
                     .putHighlight(FilterType.DISTANCE,
                             DistanceOption.getInstance().getIndex(DistanceOption.MILES),
                             DistanceOption.getInstance().getDescription(DistanceOption.MILES))
@@ -308,12 +368,52 @@ public class ExampleRestaurants {
                             CuisineOption.getInstance().getIndex(CuisineOption.AMERICAN),
                             CuisineOption.getInstance().getDescription(CuisineOption.AMERICAN))
                     .putHighlight(FilterType.FAMILIARITY,
-                            FamiliarityOption.getInstance().getIndex(FamiliarityOption.NEW),
-                            FamiliarityOption.getInstance().getDescription(FamiliarityOption.NEW))
-                    .appendDetail("The creative Mexican restaurant in East Lakeview gets more accolades from the Michelin Guide.")
-                    .appendDetail(R.drawable.restaurant15_detail_img1, "Desserts")
-                    .appendDetail(R.drawable.restaurant15_detail_img2, "Fried Avocadoes with Lobster Sauce")
-                    .setLocation("3023 N Broadway, Chicago, IL 60657")
+                            FamiliarityOption.getInstance().getIndex(FamiliarityOption.KINDA_FAMILIAR),
+                            FamiliarityOption.getInstance().getDescription(FamiliarityOption.KINDA_FAMILIAR))
+                    .appendDetail("The first restaurant from former Top Chef and Spiaggia chef Sarah Grueneberg has quickly cemented itself as one of Chicago’s top Italian destinations and its tough-to-get reservations are a prime example. The pastas are the stars at the West Loop hotspot, such as cannelloni saltimbocca with merguez lamb sausage, manchego cheese, peas, harissa, and balsamico, many of which are made on a small demonstration stage of sorts behind the bar. Also try non-pasta dishes such as the skate wing schnitzel and ‘nduja arancini, as well as a standout wine list.")
+                    .appendDetail(R.drawable.restaurant18_detail_img1, "Arrabbiata")
+                    .appendDetail(R.drawable.restaurant18_detail_img2, "Spaghetti alla chitarra")
+                    .setLocation("1020 W Madison St, Chicago, IL 60607")
+                    .build(),
+            new Restaurant.Builder()
+                    .setName("Manny’s Cafeteria & Delicatessen")
+                    .setCover(R.drawable.restaurant19_img)
+                    .putHighlight(FilterType.PRICE,
+                            PriceOption.getInstance().getIndex(PriceOption.$_20_$_30),
+                            PriceOption.getInstance().getDescription(PriceOption.$_20_$_30))
+                    .putHighlight(FilterType.DISTANCE,
+                            DistanceOption.getInstance().getIndex(DistanceOption.MILES),
+                            DistanceOption.getInstance().getDescription(DistanceOption.MILES))
+                    .putHighlight(FilterType.CUISINE,
+                            CuisineOption.getInstance().getIndex(CuisineOption.AMERICAN),
+                            CuisineOption.getInstance().getDescription(CuisineOption.AMERICAN))
+                    .putHighlight(FilterType.FAMILIARITY,
+                            FamiliarityOption.getInstance().getIndex(FamiliarityOption.KINDA_FAMILIAR),
+                            FamiliarityOption.getInstance().getDescription(FamiliarityOption.KINDA_FAMILIAR))
+                    .appendDetail("The torchbearer for a dying breed of Jewish delis and diners in Chicago, Manny’s has endured for more than a half-century in the South Loop thanks to massive and delicious pastrami sandwiches, an array of hot homestyle dishes on steam tables, and family service cultivated over generations in a cafeteria-style setting plastered with decades-old newspaper clippings and letters from Chicago luminaries. The space also now houses a new deli expansion for bagels, sweets, coffee, and food to go.")
+                    .appendDetail(R.drawable.restaurant19_detail_img1, "Sandwiches")
+                    .appendDetail(R.drawable.restaurant19_detail_img2, "Cookies")
+                    .setLocation("1141 S Jefferson St, Chicago, IL 60607")
+                    .build(),
+            new Restaurant.Builder()
+                    .setName("Acadia")
+                    .setCover(R.drawable.restaurant20_img)
+                    .putHighlight(FilterType.PRICE,
+                            PriceOption.getInstance().getIndex(PriceOption.$_20_$_30),
+                            PriceOption.getInstance().getDescription(PriceOption.$_20_$_30))
+                    .putHighlight(FilterType.DISTANCE,
+                            DistanceOption.getInstance().getIndex(DistanceOption.MILES),
+                            DistanceOption.getInstance().getDescription(DistanceOption.MILES))
+                    .putHighlight(FilterType.CUISINE,
+                            CuisineOption.getInstance().getIndex(CuisineOption.AMERICAN),
+                            CuisineOption.getInstance().getDescription(CuisineOption.AMERICAN))
+                    .putHighlight(FilterType.FAMILIARITY,
+                            FamiliarityOption.getInstance().getIndex(FamiliarityOption.KINDA_FAMILIAR),
+                            FamiliarityOption.getInstance().getDescription(FamiliarityOption.KINDA_FAMILIAR))
+                    .appendDetail("Whether tackling one of the best burgers in town paired with standout cocktails at the bar, indulging in a decadent tasting menu, or satisfying a sweets craving with a creative dessert tasting menu, chef Ryan McCaskey and team are doing it all at Acadia, a destination-worthy experience on an otherwise quiet stretch of the near South Side.")
+                    .appendDetail(R.drawable.restaurant20_detail_img1, "Lobster Roll")
+                    .appendDetail(R.drawable.restaurant20_detail_img2, "Stoning Lobster")
+                    .setLocation("11639 S Wabash Ave, Chicago, IL 60616")
                     .build()
 
     ));
